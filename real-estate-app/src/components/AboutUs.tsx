@@ -10,7 +10,7 @@ const AboutUs: React.FC = () => {
 
                 {/* Left side - About us text, button, and image */}
                 <div className="space-y-6">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center md:text-left">About Us</h2>
+                    <h2 className="text-2xl md:text-3xl font-bold text-center md:text-left">About Peninsula Development</h2>
                     <p className="text-sm md:text-base leading-relaxed text-center md:text-left">
                         At Peninsula Development Limited, our mission is to elevate living standards globally through our carefully designed properties.
                         <br />
