@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Properties from "./components/Properties";
 import React from "react";
 import Services from "./components/Services";
+import Testimonials from "./components/Testimonials";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Properties />
       <AboutUs />
       <Services />
+      <Testimonials />
     </div>
   );
 }
