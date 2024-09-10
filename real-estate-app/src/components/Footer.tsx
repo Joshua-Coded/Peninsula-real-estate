@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../images/image1.avif";
 import { FaEnvelope, FaFacebook, FaInstagram, FaPhoneAlt, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
     return (
@@ -44,16 +45,16 @@ const Footer: React.FC = () => {
                     <h3 className="text-lg font-semibold">Quick Links</h3>
                     <ul className="space-y-2">
                         <li>
-                            <a href="#home" className="hover:text-gray-300 text-sm">Home</a>
+                            <Link to="/about" className="hover:text-gray-300 text-sm">About Us</Link> {/* Updated Link */}
                         </li>
                         <li>
-                            <a href="#about" className="hover:text-gray-300 text-sm">About Us</a>
+                            <Link to="/services" className="hover:text-gray-300 text-sm">Services</Link> {/* Updated Link */}
                         </li>
                         <li>
-                            <a href="#services" className="hover:text-gray-300 text-sm">Services</a>
+                            <Link to="/contact" className="hover:text-gray-300 text-sm">Contact Us</Link> {/* Updated Link */}
                         </li>
                         <li>
-                            <a href="#contact" className="hover:text-gray-300 text-sm">Contact Us</a>
+                            <Link to="/blog" className="hover:text-gray-300 text-sm">Blog</Link> {/* Updated Link */}
                         </li>
                     </ul>
                 </div>

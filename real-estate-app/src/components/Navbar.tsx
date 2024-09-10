@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
-    const [isOpen, setIsOpen] = useState(false); // State to toggle mobile menu
-    const [isMobile, setIsMobile] = useState(false); // State to detect mobile view
+    const [isOpen, setIsOpen] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
 
-    // Detect mobile view based on screen width
     const handleResize = () => {
         setIsMobile(window.innerWidth < 768); // 768px is the breakpoint for mobile
     };
@@ -40,26 +40,28 @@ const Navbar: React.FC = () => {
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo on the left */}
-                    <div className="text-white text-2xl font-bold">Logo</div>
+                    <div className="text-white text-2xl font-bold">
+                        <Link to="/">Logo</Link> {/* Use Link to navigate to Home */}
+                    </div>
 
                     {/* Desktop Menu in the center */}
                     <div className="hidden md:flex flex-grow justify-center space-x-6 text-sm"> {/* Reduced font size */}
-                        <a href="#home" className="text-white hover:border-b-2 border-white transition-all">Home</a>
-                        <a href="#about" className="text-white hover:border-b-2 border-white transition-all">About</a>
-                        <a href="#projects" className="text-white hover:border-b-2 border-white transition-all">Our Projects</a>
-                        <a href="#services" className="text-white hover:border-b-2 border-white transition-all">Services</a>
-                        <a href="#blog" className="text-white hover:border-b-2 border-white transition-all">Blog</a>
-                        <a href="#contact" className="text-white hover:border-b-2 border-white transition-all">Contact</a>
+                        <Link to="/" className="text-white hover:border-b-2 border-white transition-all">Home</Link>
+                        <Link to="/about" className="text-white hover:border-b-2 border-white transition-all">About</Link>
+                        <Link to="/projects" className="text-white hover:border-b-2 border-white transition-all">Our Projects</Link>
+                        <Link to="/services" className="text-white hover:border-b-2 border-white transition-all">Services</Link>
+                        <Link to="/blog" className="text-white hover:border-b-2 border-white transition-all">Blog</Link>
+                        <Link to="/contact" className="text-white hover:border-b-2 border-white transition-all">Contact</Link>
                     </div>
 
                     {/* Explore Button on the right */}
                     <div className="hidden md:block">
-                        <a
-                            href="#explore"
+                        <Link
+                            to="/explore"
                             className="bg-primary text-white py-2 px-4 rounded-md hover:bg-white hover:text-primary transition-all"
                         >
                             Explore
-                        </a>
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -94,7 +96,9 @@ const Navbar: React.FC = () => {
                     {/* Top Row with Logo and Close Button */}
                     <div className="flex justify-between items-center w-full px-4 py-4">
                         {/* Logo on the left */}
-                        <div className="text-white text-2xl font-bold">Logo</div>
+                        <div className="text-white text-2xl font-bold">
+                            <Link to="/">Logo</Link>
+                        </div>
 
                         {/* Close Button on the right */}
                         <button
@@ -120,22 +124,35 @@ const Navbar: React.FC = () => {
 
                     {/* Navigation Links with Desktop Font Sizes */}
                     <ul className="flex flex-col space-y-8 text-sm w-full px-8 mt-10 text-normal font-normal"> {/* Consistent font size */}
-                        <li className="border-b border-white hover:border-b-2 transition-all"><a href="#home">Home</a></li>
-                        <li className="border-b border-white hover:border-b-2 transition-all"><a href="#about">About</a></li>
-                        <li className="border-b border-white hover:border-b-2 transition-all"><a href="#projects">Our Projects</a></li>
-                        <li className="border-b border-white hover:border-b-2 transition-all"><a href="#services">Services</a></li>
-                        <li className="border-b border-white hover:border-b-2 transition-all"><a href="#blog">Blog</a></li>
-                        <li className="border-b border-white hover:border-b-2 transition-all"><a href="#contact">Contact</a></li>
+                        <li className="border-b border-white hover:border-b-2 transition-all">
+                            <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
+                        </li>
+                        <li className="border-b border-white hover:border-b-2 transition-all">
+                            <Link to="/about" onClick={() => setIsOpen(false)}>About</Link>
+                        </li>
+                        <li className="border-b border-white hover:border-b-2 transition-all">
+                            <Link to="/projects" onClick={() => setIsOpen(false)}>Our Projects</Link>
+                        </li>
+                        <li className="border-b border-white hover:border-b-2 transition-all">
+                            <Link to="/services" onClick={() => setIsOpen(false)}>Services</Link>
+                        </li>
+                        <li className="border-b border-white hover:border-b-2 transition-all">
+                            <Link to="/blog" onClick={() => setIsOpen(false)}>Blog</Link>
+                        </li>
+                        <li className="border-b border-white hover:border-b-2 transition-all">
+                            <Link to="/contact" onClick={() => setIsOpen(false)}>Contact</Link>
+                        </li>
                     </ul>
 
                     {/* Explore Button in Mobile Menu */}
                     <div className="mt-10">
-                        <a
-                            href="#explore"
+                        <Link
+                            to="/explore"
                             className="border-4 border-white text-white py-2 px-6 rounded-md" // Increased border to 4px
+                            onClick={() => setIsOpen(false)}
                         >
                             Explore
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>
