@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import hero from "../images/penin1.jpeg";
+import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
     const [activeButton, setActiveButton] = useState('explore'); // Set the default active button to 'explore'
@@ -27,20 +28,25 @@ const Hero: React.FC = () => {
                 </div>
 
                 {/* Responsive Buttons with extra margin-top */}
-                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10 lg:space-x-12 mt-10"> {/* Added margin-top here */}
+                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10 lg:space-x-12 mt-10">
                     {/* First button has default primary background */}
-                    <button
-                        onClick={() => handleClick('explore')}
-                        className={`py-3 px-6 rounded-md ${activeButton === 'explore' ? 'bg-primary text-white' : 'bg-white text-primary'} hover:bg-white hover:text-primary transition-all`}
-                    >
-                        Discover our Properties
-                    </button>
-                    <button
-                        onClick={() => handleClick('contact')}
-                        className={`py-3 px-6 rounded-md ${activeButton === 'contact' ? 'bg-primary text-white' : 'bg-white text-primary'} hover:bg-white hover:text-primary transition-all`}
-                    >
-                        Get In Touch
-                    </button>
+                    <Link to="/properties">
+                        <button
+                            onClick={() => handleClick('explore')}
+                            className={`py-3 px-6 rounded-md ${activeButton === 'explore' ? 'bg-primary text-white' : 'bg-white text-primary'} hover:bg-white hover:text-primary transition-all`}
+                        >
+                            Discover our Properties
+                        </button>
+                    </Link>
+
+                    <Link to="/contact">
+                        <button
+                            onClick={() => handleClick('contact')}
+                            className={`py-3 px-6 rounded-md ${activeButton === 'contact' ? 'bg-primary text-white' : 'bg-white text-primary'} hover:bg-white hover:text-primary transition-all`}
+                        >
+                            Get In Touch
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

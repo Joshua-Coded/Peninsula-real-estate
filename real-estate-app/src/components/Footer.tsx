@@ -6,17 +6,17 @@ import { Link } from "react-router-dom";
 const Footer: React.FC = () => {
     return (
         <footer className="bg-primary text-white py-10">
-            <div className="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Left: Contact Details */}
-                <div className="space-y-4 text-center md:text-left">
+            <div className="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                {/* Left: Contact Details with margin-left for mobile */}
+                <div className="space-y-4 ml-[20%] md:ml-0"> {/* 20% left margin for mobile, no margin for larger screens */}
                     <h3 className="text-lg font-semibold">Contact Us</h3>
-                    <p className="flex justify-center md:justify-start items-center text-sm">
+                    <p className="flex items-center text-sm">
                         <FaPhoneAlt className="mr-2" /> +123 456 7890
                     </p>
-                    <p className="flex justify-center md:justify-start items-center text-sm">
+                    <p className="flex items-center text-sm">
                         <FaEnvelope className="mr-2" /> info@peninsula.com
                     </p>
-                    <p className="flex justify-center md:justify-start items-center text-sm">
+                    <p className="flex items-center text-sm">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M5 8a5 5 0 1110 0c0 3-5 9-5 9S5 11 5 8zm5-3a3 3 0 100 6 3 3 0 000-6z" clipRule="evenodd" />
                         </svg>
@@ -25,9 +25,9 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Center: Social Media Links */}
-                <div className="text-center">
+                <div className="text-left md:text-center ml-[20%] md:ml-0"> {/* 20% left margin for mobile, no margin for larger screens */}
                     <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-                    <div className="flex justify-center space-x-6">
+                    <div className="flex justify-start md:justify-center space-x-6">
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
                             <FaFacebook size={24} />
                         </a>
@@ -41,20 +41,20 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Right: Quick Links */}
-                <div className="space-y-4 text-center md:text-left">
+                <div className="space-y-4 ml-[20%] md:ml-0"> {/* 20% left margin for mobile, no margin for larger screens */}
                     <h3 className="text-lg font-semibold">Quick Links</h3>
                     <ul className="space-y-2">
                         <li>
-                            <Link to="/about" className="hover:text-gray-300 text-sm">About Us</Link> {/* Updated Link */}
+                            <Link to="/about" className="hover:text-gray-300 text-sm">About Us</Link>
                         </li>
                         <li>
-                            <Link to="/services" className="hover:text-gray-300 text-sm">Services</Link> {/* Updated Link */}
+                            <Link to="/services" className="hover:text-gray-300 text-sm">Services</Link>
                         </li>
                         <li>
-                            <Link to="/contact" className="hover:text-gray-300 text-sm">Contact Us</Link> {/* Updated Link */}
+                            <Link to="/contact" className="hover:text-gray-300 text-sm">Contact Us</Link>
                         </li>
                         <li>
-                            <Link to="/blog" className="hover:text-gray-300 text-sm">Blog</Link> {/* Updated Link */}
+                            <Link to="/blog" className="hover:text-gray-300 text-sm">Blog</Link>
                         </li>
                     </ul>
                 </div>

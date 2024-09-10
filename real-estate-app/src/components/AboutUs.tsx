@@ -2,6 +2,7 @@ import React from "react";
 import aboutImage1 from "../images/image1.avif";
 import aboutImage2 from "../images/image2.avif";
 import aboutImage3 from "../images/image3.avif";
+import { Link } from "react-router-dom";
 
 const AboutUs: React.FC = () => {
     return (
@@ -17,9 +18,11 @@ const AboutUs: React.FC = () => {
                         We are committed to delivering secure, sophisticated, and comfortable homes, tailored to meet the unique needs of families and individuals.
                     </p>
                     <div className="flex justify-center md:justify-start">
-                        <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
-                            Learn More
-                        </button>
+                        <Link to="/about"> {/* Link to the About Us Page */}
+                            <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
+                                Learn More
+                            </button>
+                        </Link>
                     </div>
 
                     {/* Image below the button (Visible only on desktop) */}

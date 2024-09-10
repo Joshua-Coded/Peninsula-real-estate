@@ -1,6 +1,7 @@
 import React from "react";
 import serviceImage1 from "../images/image2.avif";
 import serviceImage2 from "../images/image3.avif";
+import { Link } from "react-router-dom";
 
 const Services: React.FC = () => {
     return (
@@ -15,9 +16,11 @@ const Services: React.FC = () => {
                         customer support, we are here to provide solutions.
                     </p>
                     <div className="flex justify-center md:justify-start">
-                        <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
-                            Explore Services
-                        </button>
+                        <Link to="/services"> {/* Link to the Services page */}
+                            <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
+                                Explore Services
+                            </button>
+                        </Link>
                     </div>
 
                     {/* Additional image below services content */}
