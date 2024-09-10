@@ -1,4 +1,5 @@
 import AboutUs from "./components/AboutUs";
+import ConnectSection from "./components/ConnectSection";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Properties from "./components/Properties";
@@ -15,6 +16,7 @@ function App() {
       <AboutUs />
       <Services />
       <Testimonials />
+      <ConnectSection />
     </div>
   );
 }
