@@ -1,5 +1,6 @@
 import AboutUs from "./components/AboutUs";
 import ConnectSection from "./components/ConnectSection";
+import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Properties from "./components/Properties";
@@ -17,6 +18,7 @@ function App() {
       <Services />
       <Testimonials />
       <ConnectSection />
+      <Footer />
     </div>
   );
 }
