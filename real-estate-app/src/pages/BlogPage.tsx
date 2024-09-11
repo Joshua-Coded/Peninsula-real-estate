@@ -228,12 +228,11 @@ const BlogPage: React.FC = () => {
                 </div>
             </div>
 
-
-
-
             {/* Blog Post Section */}
             <div className="py-12">
-                <h2 className="text-3xl font-bold text-center mb-8">Latest Blog Posts</h2>
+                <h2 className="text-3xl font-bold text-center mb-8">
+                    {selectedCategory === 'All' ? 'Latest Blog Posts' : `${selectedCategory} Blog Posts`}
+                </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredBlogs.map((blog) => (
                         <div key={blog.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
