@@ -202,7 +202,7 @@ const BlogPage: React.FC = () => {
             {/* Hero Section */}
             <div
                 className="h-screen bg-cover bg-center text-white flex flex-col justify-center items-center"
-                style={{ backgroundImage: `url(${blogImage1})`, width: '100vw', minHeight: '100vh' }}
+                style={{ backgroundImage: `url(${blogImage2})`, width: '100vw', minHeight: '100vh' }}
             >
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Overlay */}
                 <div className="relative text-center px-4 max-w-2xl z-10">
