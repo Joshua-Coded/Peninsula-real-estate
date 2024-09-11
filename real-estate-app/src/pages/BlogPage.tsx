@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import authorImage1 from "../images/test1.png";
 import authorImage2 from "../images/test2.jpeg";
 import authorImage3 from "../images/test3.jpeg";
+import bg from "../images/bgImage.png";
 import blogImage1 from "../images/blog1.png";
 import blogImage2 from "../images/blog2.png";
 import blogImage3 from "../images/blog3.png";
@@ -198,11 +199,11 @@ const BlogPage: React.FC = () => {
     const filteredBlogs = selectedCategory === 'All' ? blogs : blogs.filter(blog => blog.category === selectedCategory);
 
     return (
-        <div className="py-12 px-6">
+        <div className="py-12 px-4 md:px-6">
             {/* Hero Section */}
             <div
                 className="h-screen bg-cover bg-center text-white flex flex-col justify-center items-center"
-                style={{ backgroundImage: `url(${blogImage2})`, width: '100vw', minHeight: '100vh' }}
+                style={{ backgroundImage: `url(${bg})` }}
             >
                 <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Overlay */}
                 <div className="relative text-center px-4 max-w-2xl z-10">
@@ -233,7 +234,7 @@ const BlogPage: React.FC = () => {
                 <h2 className="text-3xl font-bold text-center mb-8">
                     {selectedCategory === 'All' ? 'Latest Blog Posts' : `${selectedCategory} Blog Posts`}
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredBlogs.map((blog) => (
                         <div key={blog.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
                             <img src={blog.image} alt={blog.title} className="w-full h-64 object-cover" />
@@ -257,7 +258,7 @@ const BlogPage: React.FC = () => {
 
             {/* Modal */}
             {selectedBlog && (
-                <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50">
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 px-4">
                     <div className="bg-white rounded-lg p-6 relative max-w-3xl w-full">
                         <button
                             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
