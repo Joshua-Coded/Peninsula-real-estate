@@ -1,6 +1,6 @@
 import React from "react";
 import approachImage from "../images/approach.png";
-import backgroundImage from "../images/image1.avif";
+import backgroundImage from "../images/blog3.png";
 import ctaBackground from "../images/house1.png";
 import missionImage from "../images/mission.png";
 import visionImage from "../images/house5.png";
