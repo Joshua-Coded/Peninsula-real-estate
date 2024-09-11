@@ -1,9 +1,9 @@
 import React from "react";
-import approachImage from "../images/test1.png";
-import backgroundImage from "../images/test1.png";
-import ctaBackground from "../images/test2.jpeg";
-import missionImage from "../images/test3.jpeg";
-import visionImage from "../images/image1.avif";
+import approachImage from "../images/approach.png";
+import backgroundImage from "../images/image1.avif";
+import ctaBackground from "../images/house1.png";
+import missionImage from "../images/mission.png";
+import visionImage from "../images/house5.png";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
