@@ -181,29 +181,26 @@ const ProjectsPage: React.FC = () => {
         <div className="py-12">
             {/* Hero Section */}
             <div
-                className="relative h-screen bg-cover bg-center text-white flex flex-col justify-center items-center"
-                style={{ backgroundImage: `url(${bg})` }}
+                className="h-screen bg-cover bg-center text-white flex flex-col justify-center items-center"
+                style={{ backgroundImage: `url(${bg})`, width: '100vw', minHeight: '100vh' }}
             >
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-
-                {/* Text and button container */}
-                <div className="relative z-10 text-center px-6">
-                    <h1 className="text-5xl md:text-6xl font-bold leading-tight">Our Projects</h1>
-                    <p className="mt-4 text-lg md:text-2xl">
+                <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Overlay for readability */}
+                <div className="relative text-center px-4 max-w-2xl z-10">
+                    <h1 className="text-4xl md:text-5xl font-bold">Our Projects</h1>
+                    <p className="mt-4 text-xl">
                         Explore our current, upcoming, and completed projects.
                     </p>
-
-                    {/* Get in touch button */}
-                    <div className="mt-8">
+                    <div className="mt-6">
                         <Link to="/contact">
-                            <button className="bg-primary text-white py-3 px-6 text-lg font-medium rounded-md hover:bg-white hover:text-primary transition-all">
+                            <button className="bg-primary text-white py-3 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
                                 Get in Touch
                             </button>
                         </Link>
                     </div>
                 </div>
             </div>
+
+
 
 
             {/* Current Projects Section */}
