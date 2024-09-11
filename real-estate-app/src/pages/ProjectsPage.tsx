@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import bg from "../images/image2.avif";
 import projectImage1 from "../images/house1.png";
 import projectImage2 from "../images/house2.png";
 import projectImage3 from "../images/house3.png";
@@ -6,7 +7,7 @@ import projectImage4 from "../images/house4.png";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-// Project Data
+// Project Data (expanded to 15 projects)
 const projects = [
     {
         id: 1,
@@ -40,11 +41,35 @@ const projects = [
         status: "In Progress",
         images: [projectImage4, projectImage1, projectImage2],
     },
+    {
+        id: 5,
+        name: "Hillside Residence",
+        location: "Enugu, Nigeria",
+        description: "Elegant residence on a serene hillside.",
+        status: "In Progress",
+        images: [projectImage1, projectImage2, projectImage3],
+    },
+    {
+        id: 6,
+        name: "Mountain View Estate",
+        location: "Jos, Nigeria",
+        description: "Stunning estate with mountain views.",
+        status: "Under Construction",
+        images: [projectImage4, projectImage1, projectImage2],
+    },
+    {
+        id: 7,
+        name: "Sunset Villas",
+        location: "Abuja, Nigeria",
+        description: "Villas offering sunset views in a premium location.",
+        status: "In Progress",
+        images: [projectImage2, projectImage3, projectImage1],
+    },
 ];
 
 const upcomingProjects = [
     {
-        id: 5,
+        id: 8,
         name: "Garden City Villa",
         location: "Port Harcourt, Nigeria",
         description: "A stunning villa with lush gardens.",
@@ -52,18 +77,34 @@ const upcomingProjects = [
         images: [projectImage1, projectImage2, projectImage3],
     },
     {
-        id: 6,
+        id: 9,
         name: "Lagoon View Apartments",
         location: "Victoria Island, Lagos",
         description: "Luxury apartments with serene lagoon views.",
         status: "Upcoming",
         images: [projectImage3, projectImage4, projectImage2],
-    }
+    },
+    {
+        id: 10,
+        name: "Waterfront Residences",
+        location: "Lagos, Nigeria",
+        description: "Exclusive residences on the waterfront.",
+        status: "Upcoming",
+        images: [projectImage2, projectImage1, projectImage3],
+    },
+    {
+        id: 11,
+        name: "Oasis Park Homes",
+        location: "Kano, Nigeria",
+        description: "A serene oasis in the heart of Kano.",
+        status: "Upcoming",
+        images: [projectImage3, projectImage4, projectImage1],
+    },
 ];
 
 const completedProjects = [
     {
-        id: 7,
+        id: 12,
         name: "Sunset Apartments",
         location: "Lekki, Lagos",
         description: "Beautiful apartments with sunset views.",
@@ -71,13 +112,29 @@ const completedProjects = [
         images: [projectImage4, projectImage1, projectImage2],
     },
     {
-        id: 8,
+        id: 13,
         name: "Seaside Mansion",
         location: "Banana Island, Lagos",
         description: "Luxurious mansion by the seaside.",
         status: "Completed",
         images: [projectImage3, projectImage2, projectImage1],
-    }
+    },
+    {
+        id: 14,
+        name: "Skyline Towers",
+        location: "Abuja, Nigeria",
+        description: "High-rise towers with skyline views.",
+        status: "Completed",
+        images: [projectImage1, projectImage2, projectImage3],
+    },
+    {
+        id: 15,
+        name: "Park View Estates",
+        location: "Port Harcourt, Nigeria",
+        description: "Exclusive estates with park views.",
+        status: "Completed",
+        images: [projectImage2, projectImage3, projectImage4],
+    },
 ];
 
 const ProjectsPage: React.FC = () => {
@@ -124,14 +181,30 @@ const ProjectsPage: React.FC = () => {
         <div className="py-12">
             {/* Hero Section */}
             <div
-                className="h-screen bg-cover bg-center text-white flex justify-center items-center"
-                style={{ backgroundImage: `url(${projectImage1})` }}
+                className="relative h-screen bg-cover bg-center text-white flex flex-col justify-center items-center"
+                style={{ backgroundImage: `url(${bg})` }}
             >
-                <div className="text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold">Our Projects</h1>
-                    <p className="mt-4 text-xl">Explore our current, upcoming, and completed projects.</p>
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+
+                {/* Text and button container */}
+                <div className="relative z-10 text-center px-6">
+                    <h1 className="text-5xl md:text-6xl font-bold leading-tight">Our Projects</h1>
+                    <p className="mt-4 text-lg md:text-2xl">
+                        Explore our current, upcoming, and completed projects.
+                    </p>
+
+                    {/* Get in touch button */}
+                    <div className="mt-8">
+                        <Link to="/contact">
+                            <button className="bg-primary text-white py-3 px-6 text-lg font-medium rounded-md hover:bg-white hover:text-primary transition-all">
+                                Get in Touch
+                            </button>
+                        </Link>
+                    </div>
                 </div>
             </div>
+
 
             {/* Current Projects Section */}
             <div className="px-6 py-12">
@@ -141,15 +214,15 @@ const ProjectsPage: React.FC = () => {
                         <div key={project.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
                             <img src={project.images[0]} alt={project.name} className="w-full h-64 object-cover" />
                             <div className="p-6">
-                                <h3 className="text-xl font-semibold">{project.name}</h3>
-                                <p className="text-gray-600">{project.location}</p>
-                                <p className="mt-2">{project.description}</p>
+                                <h3 className="text-xl font-semibold shadow-md">{project.name}</h3>
+                                <p className="text-gray-600 shadow-md">{project.location}</p>
+                                <p className="mt-2 shadow-md">{project.description}</p>
                                 <div className="flex justify-between items-center mt-4">
                                     <p className={`text-sm text-white px-2 py-1 rounded-full ${getStatusColor(project.status)}`}>
                                         {project.status}
                                     </p>
                                     <button
-                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all"
+                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all shadow-md"
                                         onClick={() => openModal(project)}
                                     >
                                         View Details
@@ -214,13 +287,19 @@ const ProjectsPage: React.FC = () => {
                         <div key={project.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
                             <img src={project.images[0]} alt={project.name} className="w-full h-64 object-cover" />
                             <div className="p-6">
-                                <h3 className="text-xl font-semibold">{project.name}</h3>
-                                <p className="text-gray-600">{project.location}</p>
-                                <p className="mt-2">{project.description}</p>
+                                <h3 className="text-xl font-semibold shadow-md">{project.name}</h3>
+                                <p className="text-gray-600 shadow-md">{project.location}</p>
+                                <p className="mt-2 shadow-md">{project.description}</p>
                                 <div className="flex justify-between items-center mt-4">
                                     <p className={`text-sm text-white px-2 py-1 rounded-full ${getStatusColor(project.status)}`}>
                                         {project.status}
                                     </p>
+                                    <button
+                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all shadow-md"
+                                        onClick={() => openModal(project)}
+                                    >
+                                        View Details
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -236,13 +315,19 @@ const ProjectsPage: React.FC = () => {
                         <div key={project.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
                             <img src={project.images[0]} alt={project.name} className="w-full h-64 object-cover" />
                             <div className="p-6">
-                                <h3 className="text-xl font-semibold">{project.name}</h3>
-                                <p className="text-gray-600">{project.location}</p>
-                                <p className="mt-2">{project.description}</p>
+                                <h3 className="text-xl font-semibold shadow-md">{project.name}</h3>
+                                <p className="text-gray-600 shadow-md">{project.location}</p>
+                                <p className="mt-2 shadow-md">{project.description}</p>
                                 <div className="flex justify-between items-center mt-4">
                                     <p className={`text-sm text-white px-2 py-1 rounded-full ${getStatusColor(project.status)}`}>
                                         {project.status}
                                     </p>
+                                    <button
+                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all shadow-md"
+                                        onClick={() => openModal(project)}
+                                    >
+                                        View Details
+                                    </button>
                                 </div>
                             </div>
                         </div>
