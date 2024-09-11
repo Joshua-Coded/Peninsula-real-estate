@@ -1,5 +1,5 @@
 import React from "react";
-import backgroundImage from "../images/image3.avif";
+import backgroundImage from "../images/house1.png";
 import { FaEnvelope } from "react-icons/fa";
 
 const ConnectSection: React.FC = () => {

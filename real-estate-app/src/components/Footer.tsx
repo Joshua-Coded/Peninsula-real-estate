@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../images/image1.avif";
+import logo from "../images/logo.png";
 import { FaEnvelope, FaFacebook, FaInstagram, FaPhoneAlt, FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 

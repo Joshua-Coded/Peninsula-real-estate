@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
 
 const Navbar: React.FC = () => {
@@ -41,7 +42,7 @@ const Navbar: React.FC = () => {
                 <div className="flex justify-between items-center h-16">
                     {/* Logo on the left */}
                     <div className="text-white text-2xl font-bold">
-                        <Link to="/">Logo</Link> {/* Use Link to navigate to Home */}
+                        <Link to="/"><img src={logo} /></Link> {/* Use Link to navigate to Home */}
                     </div>
 
                     {/* Desktop Menu in the center */}
@@ -97,7 +98,7 @@ const Navbar: React.FC = () => {
                     <div className="flex justify-between items-center w-full px-4 py-4">
                         {/* Logo on the left */}
                         <div className="text-white text-2xl font-bold">
-                            <Link to="/">Logo</Link>
+                            <Link to="/"><img src={logo} /></Link>
                         </div>
 
                         {/* Close Button on the right */}

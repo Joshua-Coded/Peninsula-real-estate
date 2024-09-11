@@ -1,6 +1,6 @@
 import React from "react";
-import serviceImage1 from "../images/image2.avif";
-import serviceImage2 from "../images/image3.avif";
+import serviceImage1 from "../images/house1.png";
+import serviceImage2 from "../images/house6.png";
 import { Link } from "react-router-dom";
 
 const Services: React.FC = () => {

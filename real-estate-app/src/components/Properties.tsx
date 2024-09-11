@@ -1,7 +1,7 @@
 import React from "react";
-import image1 from "../images/image1.avif";
-import image2 from "../images/image2.avif";
-import image3 from "../images/image3.avif";
+import image1 from "../images/house2.png";
+import image2 from "../images/house3.png";
+import image3 from "../images/house5.png";
 import { Link } from "react-router-dom";
 
 const Properties: React.FC = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import testimonialImage1 from "../images/test1.jpeg";
+import testimonialImage1 from "../images/test1.png";
 import testimonialImage2 from "../images/test2.jpeg";
 import testimonialImage3 from "../images/test3.jpeg";
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
@@ -49,7 +49,7 @@ const Testimonials: React.FC = () => {
                     />
 
                     {/* Testimonial Box, reduced width and height */}
-                    <div className="absolute bottom-[-25%] left-1/2 transform -translate-x-1/2 bg-white p-4 rounded-lg shadow-lg w-[80%] md:max-w-xs"> {/* Reduced width and padding */}
+                    <div className="absolute bottom-[-10%] left-1/2 transform -translate-x-1/2 bg-white p-4 rounded-lg shadow-lg w-[80%] md:max-w-xs"> {/* Reduced width and padding */}
                         {/* Quote Icon */}
                         <FaQuoteLeft className="text-primary text-2xl mb-2" />
 

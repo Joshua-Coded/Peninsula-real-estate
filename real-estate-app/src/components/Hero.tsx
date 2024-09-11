@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import hero from "../images/penin1.jpeg";
+import hero from "../images/house1.png";
 import { Link } from "react-router-dom";
 
 const Hero: React.FC = () => {
-    const [activeButton, setActiveButton] = useState('explore'); // Set the default active button to 'explore'
+    const [activeButton, setActiveButton] = useState('explore');
 
     const handleClick = (buttonName: string) => {
         setActiveButton(buttonName);
@@ -12,8 +12,8 @@ const Hero: React.FC = () => {
     return (
         <div
             id="home"
-            className="h-screen bg-cover bg-center font-poppins" // Use the Poppins font family globally in this section
-            style={{ backgroundImage: `url(${hero})` }} // Properly apply the image as background
+            className="h-screen bg-cover bg-center font-poppins"
+            style={{ backgroundImage: `url(${hero})` }}
         >
             <div className="flex flex-col justify-center items-center h-full text-white text-center bg-black bg-opacity-40 px-6">
                 {/* Ensure the content doesn't stretch too wide */}

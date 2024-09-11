@@ -1,7 +1,7 @@
 import React from "react";
-import aboutImage1 from "../images/image1.avif";
-import aboutImage2 from "../images/image2.avif";
-import aboutImage3 from "../images/image3.avif";
+import aboutImage1 from "../images/mission.png";
+import aboutImage2 from "../images/house1.png";
+import aboutImage3 from "../images/house2.png";
 import { Link } from "react-router-dom";
 
 const AboutUs: React.FC = () => {
