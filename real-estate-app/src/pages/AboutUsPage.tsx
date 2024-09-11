@@ -16,7 +16,7 @@ const AboutUsPage: React.FC = () => {
                 style={{ backgroundImage: `url(${backgroundImage})`, width: '100vw' }}
             >
                 <div className="text-center px-4 max-w-2xl">
-                    <h1 className="text-4xl md:text-5xl font-extrabold">About Us</h1>
+                    <h1 className="text-4xl md:text-5xl font-extrabold">Who We Are</h1>
                     <p className="text-sm md:text-lg mt-4 leading-relaxed">
                         Welcome to Peninsula Development Limited. We are committed to elevating living standards globally by
                         offering secure, sophisticated, and comfortable homes tailored to meet your needs.
