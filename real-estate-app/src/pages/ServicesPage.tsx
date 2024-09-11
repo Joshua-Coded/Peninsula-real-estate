@@ -1,14 +1,15 @@
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
+import ConsultingSection from "../components/ConsultingSection";
 import PropertySales from "../components/PropertySales";
 import React from "react";
 import Slider from "react-slick";
-import bgImage from "../images/image3.avif";
-import consultingimage from "../images/image2.avif";
-import investmentImage1 from "../images/house2.png";
-import investmentImage2 from "../images/house3.png";
-import investmentImage3 from "../images/house4.png";
-import managementImage from "../images/house5.png";
+import bgImage from "../images/bgImage.png";
+import consultingimage from "../images/consulting.png";
+import investmentImage1 from "../images/invest1.png";
+import investmentImage2 from "../images/invest2.png";
+import investmentImage3 from "../images/invest3.png";
+import managementImage from "../images/management.png";
 import propertyImage from "../images/house1.png";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -141,9 +142,9 @@ const ServicesPage: React.FC = () => {
             </div>
 
             {/* Consulting Section */}
-            <div className="py-12 px-6 bg-gray-50"> {/* Optional background for differentiation */}
+            {/* <div className="py-12 px-6 bg-gray-50"> 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    {/* Text */}
+                   
                     <div className="space-y-6">
                         <div className="border-b-2 border-primary w-16"></div>
                         <h2 className="text-3xl font-bold">Consulting</h2>
@@ -160,14 +161,16 @@ const ServicesPage: React.FC = () => {
                         </div>
                     </div>
 
-                    {/* Image */}
+                
                     <img
                         src={consultingimage}
                         alt="Consulting Expert"
                         className="w-full h-72 md:h-80 object-cover rounded-md"
                     />
                 </div>
-            </div>
+            </div> */}
+
+            <ConsultingSection />
 
             {/* Get Started Section */}
             <div
