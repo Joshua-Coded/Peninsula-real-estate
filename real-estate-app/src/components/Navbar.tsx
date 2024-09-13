@@ -12,13 +12,10 @@ const Navbar: React.FC = () => {
     };
 
     useEffect(() => {
-        // Set the initial value
         handleResize();
-
-        // Add event listener to detect resize
-        window.addEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
         return () => {
-            window.removeEventListener('resize', handleResize);
+            window.removeEventListener("resize", handleResize);
         };
     }, []);
 
@@ -26,33 +23,52 @@ const Navbar: React.FC = () => {
         const handleScroll = () => {
             setScrollPosition(window.scrollY);
         };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
     return (
         <nav
-            className={`fixed w-full top-0 z-50 transition-all 
-            ${isMobile || scrollPosition > 100 ? 'bg-primary' : 'bg-transparent'}
-            `}
+            className={`fixed w-full top-0 z-50 transition-all ${isMobile || scrollPosition > 100 ? "bg-primary" : "bg-transparent"
+                }`}
+            style={{ paddingTop: "10px", paddingBottom: "10px" }} // Added padding for top and bottom
         >
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo on the left */}
                     <div className="text-white text-2xl font-bold">
-                        <Link to="/"><img src={logo} /></Link> {/* Use Link to navigate to Home */}
+                        <Link to="/">
+                            <img
+                                src={logo}
+                                alt="Logo"
+                                className="h-14 w-auto md:h-16 md:w-auto" // Increased size by 10%
+                                style={{ marginLeft: isMobile ? "-10%" : "0" }} // Move to the left by 10% on mobile
+                            />
+                        </Link>
                     </div>
 
                     {/* Desktop Menu in the center */}
-                    <div className="hidden md:flex flex-grow justify-center space-x-6 text-sm"> {/* Reduced font size */}
-                        <Link to="/" className="text-white hover:border-b-2 border-white transition-all">Home</Link>
-                        <Link to="/about" className="text-white hover:border-b-2 border-white transition-all">About</Link>
-                        <Link to="/projects" className="text-white hover:border-b-2 border-white transition-all">Our Projects</Link>
-                        <Link to="/services" className="text-white hover:border-b-2 border-white transition-all">Services</Link>
-                        <Link to="/blog" className="text-white hover:border-b-2 border-white transition-all">Blog</Link>
-                        <Link to="/contact" className="text-white hover:border-b-2 border-white transition-all">Contact</Link>
+                    <div className="hidden md:flex flex-grow justify-center space-x-6 text-sm">
+                        <Link to="/" className="text-white hover:border-b-2 border-white transition-all">
+                            Home
+                        </Link>
+                        <Link to="/about" className="text-white hover:border-b-2 border-white transition-all">
+                            About
+                        </Link>
+                        <Link to="/projects" className="text-white hover:border-b-2 border-white transition-all">
+                            Our Projects
+                        </Link>
+                        <Link to="/services" className="text-white hover:border-b-2 border-white transition-all">
+                            Services
+                        </Link>
+                        <Link to="/blog" className="text-white hover:border-b-2 border-white transition-all">
+                            Blog
+                        </Link>
+                        <Link to="/contact" className="text-white hover:border-b-2 border-white transition-all">
+                            Contact
+                        </Link>
                     </div>
 
                     {/* Explore Button on the right */}
@@ -89,16 +105,23 @@ const Navbar: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Mobile Menu with Slower Animation */}
+                {/* Mobile Menu */}
                 <div
-                    className={`fixed inset-0 bg-primary text-white flex flex-col items-center justify-start md:hidden transform transition-transform duration-500 ease-in-out 
-                    ${isOpen ? 'translate-y-0' : '-translate-y-full'}`} // Slower and smoother animation
+                    className={`fixed inset-0 bg-primary text-white flex flex-col items-start justify-start md:hidden transform transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
+                        }`}
                 >
                     {/* Top Row with Logo and Close Button */}
                     <div className="flex justify-between items-center w-full px-4 py-4">
                         {/* Logo on the left */}
-                        <div className="text-white text-2xl font-bold">
-                            <Link to="/"><img src={logo} /></Link>
+                        <div className="text-white text-2xl font-bold flex-shrink-0">
+                            <Link to="/">
+                                <img
+                                    src={logo}
+                                    alt="Logo"
+                                    className="h-10 w-auto" // Increased logo size by 10%
+                                    style={{ marginLeft: "10%" }} // Move to the left by 10%
+                                />
+                            </Link>
                         </div>
 
                         {/* Close Button on the right */}
@@ -124,7 +147,7 @@ const Navbar: React.FC = () => {
                     </div>
 
                     {/* Navigation Links with Desktop Font Sizes */}
-                    <ul className="flex flex-col space-y-8 text-sm w-full px-8 mt-10 text-normal font-normal"> {/* Consistent font size */}
+                    <ul className="flex flex-col space-y-8 text-sm w-full px-8 mt-10 text-normal font-normal">
                         <li className="border-b border-white hover:border-b-2 transition-all">
                             <Link to="/" onClick={() => setIsOpen(false)}>Home</Link>
                         </li>
@@ -146,10 +169,10 @@ const Navbar: React.FC = () => {
                     </ul>
 
                     {/* Explore Button in Mobile Menu */}
-                    <div className="mt-10">
+                    <div className="mt-10 w-full flex justify-center">
                         <Link
                             to="/explore"
-                            className="border-4 border-white text-white py-2 px-6 rounded-md" // Increased border to 4px
+                            className="border-4 border-white text-white py-2 px-6 rounded-md w-3/4 text-center" // Matching width with lines
                             onClick={() => setIsOpen(false)}
                         >
                             Explore
