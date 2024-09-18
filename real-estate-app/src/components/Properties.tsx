@@ -9,65 +9,57 @@ const Properties: React.FC = () => {
         {
             id: 1,
             image: image1,
-            name: "Luxury Villa",
-            price: "$1,200,000",
-            location: "Asaba, Nigeria"
+            name: "Luxury Apartment in Asaba",
+            price: "#23,500,000.00",
+            location: "Asaba, Nigeria",
         },
         {
             id: 2,
             image: image2,
-            name: "Modern Apartment",
-            price: "$850,000",
-            location: "Lekki, Lagos"
+            name: "Elegant Villa in GRA, Asaba",
+            price: "#43,000,000.00",
+            location: "Asaba, Nigeria",
         },
         {
             id: 3,
             image: image3,
-            name: "Beach House",
-            price: "$1,500,000",
-            location: "Victoria Island, Lagos"
-        }
+            name: "Prime Commercial in Asaba",
+            price: "#45,800,000.00",
+            location: "Asaba, Nigeria",
+        },
     ];
 
     return (
-        <div className="px-0 py-12"> {/* Removed padding on the sides */}
-            {/* Section Header - Flex row for desktop */}
-            <div className="flex justify-between items-center mb-10 md:flex-row flex-col"> {/* Flex container for h1 and button */}
-                <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-0">Featured Properties</h1>
-                {/* View All Properties Button - Visible only on desktop */}
-                <Link to="/properties">  {/* Link to Properties Page */}
-                    <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all hidden md:block">
-                        View All Properties
-                    </button>
-                </Link>
-            </div>
+        <div className="flex flex-col justify-start items-center gap-6 py-12"> {/* Flexbox and gap for spacing */}
+            {/* Section Title */}
+            <h1 className="text-center text-[#333333] text-2xl md:text-[24px] font-bold font-open-sans">
+                Discover Our Premier Properties
+            </h1>
 
             {/* Properties Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-0"> {/* Removed gap between the grid items */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full px-6"> {/* Grid for properties */}
                 {properties.map((property) => (
-                    <div key={property.id} className="relative group">
-                        {/* Property Image - Increased height */}
-                        <img src={property.image} alt={property.name} className="w-full h-[28rem] object-cover" /> {/* Height set to 28rem */}
-
-                        {/* Property Info Container - Reduced shadow opacity */}
-                        <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-50 p-4 text-white"> {/* Reduced shadow opacity */}
-                            <div className="flex justify-between">
-                                <h2 className="text-lg font-bold">{property.name}</h2>
-                                <div className="flex flex-col text-right">
-                                    <span className="text-sm font-semibold">{property.price}</span>
-                                    <span className="text-sm">{property.location}</span>
-                                </div>
+                    <div
+                        key={property.id}
+                        className="relative h-[552px] bg-cover bg-center flex flex-col justify-end p-4 text-white"
+                        style={{ backgroundImage: `url(${property.image})` }} // Inline background image
+                    >
+                        {/* Property Info */}
+                        <div className="bg-black bg-opacity-50 p-4 rounded-lg">
+                            <h2 className="text-[16px] font-bold">{property.name}</h2>
+                            <div className="flex justify-between mt-2">
+                                <span className="text-[12px] font-light">Price: {property.price}</span>
+                                <span className="text-[12px] font-light">Location: {property.location}</span>
                             </div>
                         </div>
                     </div>
                 ))}
             </div>
 
-            {/* View All Properties Button - Visible only on mobile at the bottom */}
-            <div className="flex justify-center mt-10 md:hidden"> {/* Hidden on desktop */}
-                <Link to="/properties">  {/* Link to Properties Page */}
-                    <button
-                        className="bg-primary text-white py-3 px-8 rounded-md hover:bg-white hover:text-primary transition-all">
+            {/* View All Properties Button */}
+            <div className="mt-8">
+                <Link to="/properties">
+                    <button className="bg-[#0059B2] text-white py-3 px-8 rounded-md hover:bg-white hover:text-[#0059B2] transition-all">
                         View All Properties
                     </button>
                 </Link>

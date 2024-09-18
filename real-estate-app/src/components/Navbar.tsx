@@ -38,13 +38,13 @@ const Navbar: React.FC = () => {
             <div className="w-full px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     {/* Logo on the left */}
-                    <div className="text-white text-2xl font-bold">
+                    <div className="flex-shrink-0 text-white text-2xl font-bold">
                         <Link to="/">
                             <img
                                 src={logo}
                                 alt="Logo"
-                                className="h-14 w-auto md:h-16 md:w-auto" // Increased size by 10%
-                                style={{ marginLeft: isMobile ? "-10%" : "0" }} // Move to the left by 10% on mobile
+                                className="h-15 w-auto md:h-16 md:w-auto"
+                                style={{ width: "100%", height: "100%", marginLeft: isMobile ? "-10%" : "0" }} // Ensure the logo fits nicely on mobile
                             />
                         </Link>
                     </div>
@@ -113,13 +113,13 @@ const Navbar: React.FC = () => {
                     {/* Top Row with Logo and Close Button */}
                     <div className="flex justify-between items-center w-full px-4 py-4">
                         {/* Logo on the left */}
-                        <div className="text-white text-2xl font-bold flex-shrink-0">
+                        <div className="flex-shrink-0 text-white text-2xl font-bold">
                             <Link to="/">
                                 <img
                                     src={logo}
                                     alt="Logo"
-                                    className="h-10 w-auto" // Increased logo size by 10%
-                                    style={{ marginLeft: "10%" }} // Move to the left by 10%
+                                    className="h-10 w-auto"
+                                    style={{ width: "100%", height: "100%", marginLeft: "10%" }} // 10% space on mobile left
                                 />
                             </Link>
                         </div>
@@ -172,7 +172,7 @@ const Navbar: React.FC = () => {
                     <div className="mt-10 w-full flex justify-center">
                         <Link
                             to="/explore"
-                            className="border-4 border-white text-white py-2 px-6 rounded-md w-3/4 text-center" // Matching width with lines
+                            className="border-4 border-white text-white py-2 px-6 rounded-md w-3/4 text-center"
                             onClick={() => setIsOpen(false)}
                         >
                             Explore
