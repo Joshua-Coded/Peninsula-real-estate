@@ -18,6 +18,9 @@ const Footer: React.FC = () => {
                     <p className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans">
                         Info@peninsuladevelopments.com
                     </p>
+                    <p className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans">
+                        Peninsuladevelopments@gmail.com
+                    </p>
                 </div>
 
                 {/* Follow Us Section */}
