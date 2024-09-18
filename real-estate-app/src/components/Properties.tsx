@@ -30,26 +30,32 @@ const Properties: React.FC = () => {
     ];
 
     return (
-        <div className="flex flex-col justify-start items-center gap-6 py-12"> {/* Flexbox and gap for spacing */}
+        <div className="flex flex-col justify-center items-center gap-8 py-12">
             {/* Section Title */}
-            <h1 className="text-center text-[#333333] text-2xl md:text-[24px] font-bold font-open-sans">
+            <h1 className="text-center text-[#333333] text-[24px] font-bold font-open-sans">
                 Discover Our Premier Properties
             </h1>
 
             {/* Properties Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full px-6"> {/* Grid for properties */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full px-6">
                 {properties.map((property) => (
                     <div
                         key={property.id}
-                        className="relative h-[552px] bg-cover bg-center flex flex-col justify-end p-4 text-white"
-                        style={{ backgroundImage: `url(${property.image})` }} // Inline background image
+                        className="relative bg-cover bg-center flex flex-col justify-end p-4 text-white"
+                        style={{ backgroundImage: `url(${property.image})`, height: '552px' }} // Inline background image
                     >
                         {/* Property Info */}
-                        <div className="bg-black bg-opacity-50 p-4 rounded-lg">
-                            <h2 className="text-[16px] font-bold">{property.name}</h2>
+                        <div className="bg-black bg-opacity-50 p-4 w-full">
+                            <h2 className="text-[16px] font-bold font-open-sans">
+                                {property.name}
+                            </h2>
                             <div className="flex justify-between mt-2">
-                                <span className="text-[12px] font-light">Price: {property.price}</span>
-                                <span className="text-[12px] font-light">Location: {property.location}</span>
+                                <span className="text-[12px] font-light font-open-sans">
+                                    Price: {property.price}
+                                </span>
+                                <span className="text-[12px] font-light font-open-sans">
+                                    Location: {property.location}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -59,8 +65,8 @@ const Properties: React.FC = () => {
             {/* View All Properties Button */}
             <div className="mt-8">
                 <Link to="/properties">
-                    <button className="bg-[#0059B2] text-white py-3 px-8 rounded-md hover:bg-white hover:text-[#0059B2] transition-all">
-                        View All Properties
+                    <button className="bg-[#0059B2] text-white py-3 px-8 rounded-md hover:bg-white hover:text-[#0059B2] transition-all font-open-sans font-semibold text-[16px]">
+                        View all properties
                     </button>
                 </Link>
             </div>
