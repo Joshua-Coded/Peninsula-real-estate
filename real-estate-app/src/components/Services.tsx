@@ -1,67 +1,102 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import serviceImage1 from "../images/house1.png";
 import serviceImage2 from "../images/house6.png";
 import { Link } from "react-router-dom";
 
 const Services: React.FC = () => {
+    // State variables for the counts
+    const [readyUnits, setReadyUnits] = useState(0);
+    const [customers, setCustomers] = useState(0);
+    const [reviews, setReviews] = useState(0);
+
+    const impactSectionRef = useRef<HTMLDivElement | null>(null);
+    const [hasCounted, setHasCounted] = useState(false);
+
+    // Function to handle the count-up logic
+    const countUp = (targetValue: number, setter: React.Dispatch<React.SetStateAction<number>>, step: number = 10) => {
+        let startValue = 0;
+        const increment = targetValue / 100;
+
+        const countInterval = setInterval(() => {
+            startValue += increment;
+            if (startValue >= targetValue) {
+                setter(targetValue);
+                clearInterval(countInterval);
+            } else {
+                setter(Math.ceil(startValue));
+            }
+        }, step);
+    };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && !hasCounted) {
+                        countUp(1000, setReadyUnits);
+                        countUp(60000, setCustomers, 1);
+                        countUp(20000, setReviews, 1);
+                        setHasCounted(true);
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        if (impactSectionRef.current) {
+            observer.observe(impactSectionRef.current);
+        }
+
+        return () => {
+            if (impactSectionRef.current) {
+                observer.unobserve(impactSectionRef.current);
+            }
+        };
+    }, [hasCounted]);
+
     return (
-        <div className="px-6 py-12 flex justify-center"> {/* Center the whole component */}
-            <div className="max-w-screen-lg grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                {/* Left side - Services text and additional image */}
-                <div className="space-y-6">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center md:text-left">Our Services</h2>
-                    <p className="text-sm md:text-base leading-relaxed text-center md:text-left">
-                        At Peninsula Development Limited, we offer a range of services designed to meet your housing needs.
-                        Whether you're looking for high-quality residential properties, professional maintenance services, or tailored
-                        customer support, we are here to provide solutions.
-                    </p>
-                    <div className="flex justify-center md:justify-start">
-                        <Link to="/services"> {/* Link to the Services page */}
-                            <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
-                                Explore Services
-                            </button>
-                        </Link>
-                    </div>
+        <div className="flex flex-col justify-center items-center gap-16 py-12">
+            <div className="text-center">
+                <h2 className="text-[#333333] text-2xl md:text-3xl font-bold font-open-sans mb-4">Our Services</h2>
+                <p className="text-[rgba(51,51,51,0.7)] text-base font-open-sans font-light max-w-xl mx-auto">
+                    From property sales to investment opportunities and comprehensive property management, we offer a full spectrum of real estate services.
+                </p>
+            </div>
 
-                    {/* Additional image below services content */}
-                    <img
-                        src={serviceImage2}
-                        alt="Service Image 2"
-                        className="w-full md:max-w-md h-64 object-cover rounded-md border-8 border-white mx-auto md:mx-0"
-                    />
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+                {/* Image */}
+                <img
+                    src={serviceImage1}
+                    alt="Service"
+                    className="w-full md:w-[401px] h-[224px] object-cover rounded-lg shadow-md border-4 border-white"
+                />
+                <img
+                    src={serviceImage2}
+                    alt="Service"
+                    className="w-full md:w-[401px] h-[280px] object-cover rounded-lg shadow-lg border-4 border-white"
+                />
+            </div>
+
+            {/* Stats Section */}
+            <div ref={impactSectionRef} className="flex flex-col items-center gap-8 mt-12">
+                <div className="flex justify-center items-center gap-16">
+                    <div className="text-center">
+                        <p className="text-[#333333] text-2xl font-bold font-open-sans">{readyUnits}</p>
+                        <p className="text-[rgba(51,51,51,0.7)] text-sm font-open-sans">Ready Units</p>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-[#333333] text-2xl font-bold font-open-sans">{customers.toLocaleString()}</p>
+                        <p className="text-[rgba(51,51,51,0.7)] text-sm font-open-sans">Customers</p>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-[#333333] text-2xl font-bold font-open-sans">{reviews.toLocaleString()}</p>
+                        <p className="text-[rgba(51,51,51,0.7)] text-sm font-open-sans">Reviews</p>
+                    </div>
                 </div>
-
-                {/* Right side - Image and statistics */}
-                <div className="space-y-6 flex flex-col items-center">
-                    {/* Service Image */}
-                    <img
-                        src={serviceImage1}
-                        alt="Our Services"
-                        className="w-full md:max-w-md h-64 object-cover rounded-md border-8 border-white"
-                    />
-
-                    {/* Modern and Professional Statistics */}
-                    <div className="flex flex-col items-center space-y-6 w-full">
-                        {/* Ready Units */}
-                        <div className="text-center w-full">
-                            <p className="text-4xl font-extrabold text-primary">+1000</p>
-                            <p className="text-sm text-gray-600">Ready Units</p>
-                        </div>
-
-                        {/* Flex row for Customers and Reviews */}
-                        <div className="flex justify-between w-full px-6 md:px-12"> {/* Added more padding for better alignment */}
-                            {/* Customers */}
-                            <div className="text-center flex-1">
-                                <p className="text-4xl font-extrabold text-primary">+60k</p>
-                                <p className="text-sm text-gray-600">Customers</p>
-                            </div>
-                            {/* Reviews */}
-                            <div className="text-center flex-1">
-                                <p className="text-4xl font-extrabold text-primary">+21k</p>
-                                <p className="text-sm text-gray-600">Reviews</p>
-                            </div>
-                        </div>
-                    </div>
+                <div className="bg-[#0059B2] text-white rounded-lg py-3 px-8 text-center hover:bg-opacity-90 transition-all">
+                    <Link to="/services" className="text-base font-semibold font-open-sans">
+                        Explore Our Services
+                    </Link>
                 </div>
             </div>
         </div>

@@ -12,18 +12,18 @@ const Testimonials: React.FC = () => {
         {
             name: "John Doe",
             text: "Peninsula Development Limited helped me find the home of my dreams.",
-            image: testimonialImage1
+            image: testimonialImage1,
         },
         {
             name: "Jane Smith",
             text: "Working with Peninsula was an excellent experience.",
-            image: testimonialImage2
+            image: testimonialImage2,
         },
         {
             name: "Michael Brown",
             text: "I can't thank Peninsula enough for their dedication and commitment.",
-            image: testimonialImage3
-        }
+            image: testimonialImage3,
+        },
     ];
 
     // Function to handle next and previous buttons
@@ -36,64 +36,56 @@ const Testimonials: React.FC = () => {
     };
 
     return (
-        <div className="px-6 py-12 bg-primary flex flex-col justify-center items-center"> {/* Primary background color */}
-            <div className="max-w-screen-lg grid grid-cols-1 md:grid-cols-2 gap-8 items-start relative"> {/* Relative for positioning */}
+        <div
+            className="w-full flex flex-col justify-center items-center py-24 px-6"
+            style={{
+                background: "linear-gradient(122deg, #0073E5 1%, #00407F 100%)",
+            }}
+        >
+            {/* Title and Subtext */}
+            <div className="text-center space-y-4 mb-12">
+                <h2 className="text-white text-[24px] font-open-sans font-bold">
+                    Hear from Our Satisfied Clients
+                </h2>
+                <p className="text-[rgba(255,255,255,0.7)] text-[16px] font-open-sans">
+                    We help with some of the most excellent properties. See what our clients have to say about our work.
+                </p>
+            </div>
 
-                {/* Left Side - Testimonial Box */}
-                <div className="order-2 md:order-1 relative"> {/* This comes first on mobile */}
-                    {/* Testimonial Image with 40% border-radius */}
-                    <img
-                        src={testimonials[currentTestimonial].image}
-                        alt="Testimonial"
-                        className="w-full md:max-w-sm h-70 object-cover rounded-[10%] border-8 border-white mx-auto"
-                    />
+            {/* Testimonial Image and Text */}
+            <div className="relative flex flex-col items-center justify-center max-w-screen-md">
+                {/* Testimonial Image */}
+                <img
+                    src={testimonials[currentTestimonial].image}
+                    alt="Testimonial"
+                    className="w-64 h-80 object-cover rounded-md shadow-lg"
+                />
 
-                    {/* Testimonial Box, reduced width and height */}
-                    <div className="absolute bottom-[-10%] left-1/2 transform -translate-x-1/2 bg-white p-4 rounded-lg shadow-lg w-[80%] md:max-w-xs"> {/* Reduced width and padding */}
-                        {/* Quote Icon */}
-                        <FaQuoteLeft className="text-primary text-2xl mb-2" />
-
-                        {/* Testifier Name */}
-                        <h3 className="text-md font-semibold">{testimonials[currentTestimonial].name}</h3>
-
-                        {/* Testimonial Text */}
-                        <p className="text-gray-700 text-sm leading-relaxed">
-                            "{testimonials[currentTestimonial].text}"
-                        </p>
-                    </div>
-                </div>
-
-                {/* Right-side Content (Text and Carousel Arrows) */}
-                <div className="order-1 md:order-2 space-y-6 md:flex md:flex-col md:justify-between items-center"> {/* Align text and center icons */}
-                    {/* Heading and Paragraph */}
-                    <div className="space-y-4 text-center md:text-left">
-                        {/* Heading */}
-                        <h2 className="text-2xl md:text-3xl font-bold text-white">
-                            Hear From Our Satisfied Clients
-                        </h2>
-
-                        {/* Paragraph from Peninsula */}
-                        <p className="text-sm md:text-base leading-relaxed text-gray-200">
-                            At Peninsula Development Limited, we are committed to providing exceptional service to all our clients.
-                            Our goal is to ensure that every client feels satisfied with their new home.
-                        </p>
-                    </div>
+                {/* Testimonial Box */}
+                <div className="absolute bottom-[-20%] left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-lg shadow-lg w-[80%] md:max-w-xs">
+                    <FaQuoteLeft className="text-primary text-2xl mb-4" />
+                    <h3 className="text-lg font-semibold text-gray-800">
+                        {testimonials[currentTestimonial].name}
+                    </h3>
+                    <p className="text-sm text-gray-700">
+                        "{testimonials[currentTestimonial].text}"
+                    </p>
                 </div>
             </div>
 
-            {/* Carousel Arrows - Positioned further down, mt-24 on mobile */}
-            <div className="flex justify-center space-x-4 mt-24 md:mt-16"> {/* Added mt-24 for mobile, md:mt-16 for larger screens */}
+            {/* Carousel Navigation */}
+            <div className="flex justify-center items-center space-x-8 mt-16">
                 <button
-                    className="bg-white text-primary p-3 rounded-full hover:bg-primary hover:text-white transition-all"
+                    className="bg-white p-3 rounded-full shadow-md hover:bg-primary hover:text-white transition-all"
                     onClick={handlePrevious}
                 >
-                    <FaChevronLeft />
+                    <FaChevronLeft className="text-primary" />
                 </button>
                 <button
-                    className="bg-white text-primary p-3 rounded-full hover:bg-primary hover:text-white transition-all"
+                    className="bg-white p-3 rounded-full shadow-md hover:bg-primary hover:text-white transition-all"
                     onClick={handleNext}
                 >
-                    <FaChevronRight />
+                    <FaChevronRight className="text-primary" />
                 </button>
             </div>
         </div>

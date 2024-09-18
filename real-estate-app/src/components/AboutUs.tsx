@@ -6,62 +6,71 @@ import { Link } from "react-router-dom";
 
 const AboutUs: React.FC = () => {
     return (
-        <div className="px-6 py-12 flex justify-center"> {/* Center the whole component */}
-            <div className="max-w-screen-lg grid grid-cols-1 md:grid-cols-2 gap-8 items-center"> {/* Max width set to control content width */}
+        <div className="w-full flex flex-col justify-start items-center gap-16 py-12 px-6">
+            {/* Title and Paragraph Section */}
+            <div className="text-center w-full md:w-3/4 lg:w-1/2 space-y-6">
+                {/* Title */}
+                <h2 className="text-[#333333] text-[24px] font-bold font-open-sans">
+                    About Peninsula Developments
+                </h2>
 
-                {/* Left side - About us text, button, and image */}
-                <div className="space-y-6">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center md:text-left">About Peninsula Development</h2>
-                    <p className="text-sm md:text-base leading-relaxed text-center md:text-left">
-                        At Peninsula Development Limited, our mission is to elevate living standards globally through our carefully designed properties.
-                        <br />
-                        We are committed to delivering secure, sophisticated, and comfortable homes, tailored to meet the unique needs of families and individuals.
-                    </p>
-                    <div className="flex justify-center md:justify-start">
-                        <Link to="/about"> {/* Link to the About Us Page */}
-                            <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
-                                Learn More
-                            </button>
-                        </Link>
-                    </div>
+                {/* Paragraph */}
+                <p className="text-[rgba(51,51,51,0.7)] text-[16px] font-light font-open-sans">
+                    At Peninsula Developments Limited, we are dedicated to transforming the real estate landscape. Our mission is to provide exceptional living spaces that cater to the needs of modern homeowners and investors.
+                </p>
 
-                    {/* Image below the button (Visible only on desktop) */}
+                {/* Learn More Button */}
+                <Link to="/about" className="inline-flex justify-center items-center">
+                    <button className="bg-[#0059B2] text-white py-3 px-8 rounded-md hover:bg-white hover:text-[#0059B2] transition-all font-open-sans font-semibold text-[16px]">
+                        Learn More About Us
+                    </button>
+                </Link>
+            </div>
+
+            {/* Image Grid for Desktop (3 images) */}
+            <div className="hidden md:grid grid-cols-3 gap-8 max-w-screen-lg">
+                {/* First Image */}
+                <div className="overflow-hidden rounded-md border-8 border-white transform transition-transform duration-500 hover:scale-105 hover:shadow-xl">
                     <img
                         src={aboutImage1}
-                        alt="About Us"
-                        className="w-full md:max-w-md h-[70%] object-cover rounded-md border-8 border-white mx-auto md:mx-0 hidden md:block"
-                    /> {/* Hidden on mobile */}
+                        alt="First Image"
+                        className="w-full h-[550px] object-cover"
+                    />
                 </div>
 
-                {/* Right side - Two stacked images with white borders */}
-                <div className="flex flex-col space-y-6">
+                {/* Second Image */}
+                <div className="overflow-hidden rounded-md border-8 border-white transform transition-transform duration-500 hover:scale-105 hover:shadow-xl">
                     <img
                         src={aboutImage2}
-                        alt="First Image"
-                        className="w-full md:max-w-md h-72 object-cover rounded-md border-8 border-white mx-auto"
+                        alt="Second Image"
+                        className="w-full h-[550px] object-cover"
                     />
-                    {/* Reduced width of the last image by 30% */}
+                </div>
+
+                {/* Third Image */}
+                <div className="overflow-hidden rounded-md border-8 border-white transform transition-transform duration-500 hover:scale-105 hover:shadow-xl">
                     <img
                         src={aboutImage3}
-                        alt="Second Image"
-                        className="w-[70%] md:max-w-md h-48 object-cover rounded-md border-8 border-white mx-auto"
-                    /> {/* Width reduced by 30% */}
+                        alt="Third Image"
+                        className="w-full h-[550px] object-cover"
+                    />
                 </div>
             </div>
 
-            {/* Mobile view - Only show 2 images */}
-            <div className="md:hidden flex flex-col space-y-6 mt-10"> {/* Ensure only for mobile */}
-                {/* First image on mobile */}
+            {/* Image Grid for Mobile (2 images) */}
+            <div className="flex flex-col space-y-6 md:hidden">
+                {/* First Image for Mobile */}
                 <img
                     src={aboutImage2}
                     alt="First Image Mobile"
-                    className="w-full h-64 object-cover rounded-md border-8 border-white"
+                    className="w-full h-[450px] object-cover rounded-md border-8 border-white"
                 />
-                {/* Second image on mobile */}
+
+                {/* Second Image for Mobile */}
                 <img
                     src={aboutImage3}
                     alt="Second Image Mobile"
-                    className="w-full h-40 object-cover rounded-md border-8 border-white"
+                    className="w-full h-[300px] object-cover rounded-md border-8 border-white"
                 />
             </div>
         </div>
