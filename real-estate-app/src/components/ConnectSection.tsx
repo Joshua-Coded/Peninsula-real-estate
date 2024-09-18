@@ -5,28 +5,39 @@ import { FaEnvelope } from "react-icons/fa";
 const ConnectSection: React.FC = () => {
     return (
         <div
-            className="relative w-full bg-cover bg-center bg-no-repeat py-16"
+            className="relative w-full bg-cover bg-center bg-no-repeat py-16 md:py-24"
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
-            <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Dark overlay */}
+            {/* Dark overlay */}
+            <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
-            <div className="relative z-10 max-w-screen-lg mx-auto text-center text-white space-y-6">
+            {/* Content container */}
+            <div className="relative z-10 max-w-screen-lg mx-auto text-center space-y-4 md:space-y-6 px-4">
                 {/* Heading */}
-                <h2 className="text-2xl md:text-4xl font-bold">Stay Connected with Us</h2>
-                <p className="text-lg md:text-xl">Subscribe to our newsletter for the latest updates and property deals.</p>
+                <h2 className="text-white text-[20px] md:text-[24px] font-bold font-open-sans">
+                    Stay Connected
+                </h2>
 
-                {/* Email input with button */}
-                <div className="flex justify-center items-center mt-8">
-                    <div className="flex items-center bg-white text-gray-600 rounded-full shadow-lg overflow-hidden w-full max-w-xs md:max-w-lg">
+                {/* Description */}
+                <p className="text-white text-[14px] md:text-[16px] font-light font-open-sans">
+                    Sign up for our newsletter to receive the latest updates on our properties and exclusive investment opportunities.
+                </p>
+
+                {/* Email input with Subscribe button */}
+                <div className="flex justify-center items-center mt-6 md:mt-8">
+                    <div className="flex items-center bg-white text-[#333333] rounded-full shadow-lg overflow-hidden w-full max-w-xs md:max-w-lg">
+                        {/* Email icon */}
                         <span className="px-3">
                             <FaEnvelope />
                         </span>
+                        {/* Input field */}
                         <input
                             type="email"
-                            placeholder="Enter your email"
-                            className="w-full py-3 px-4 focus:outline-none"
+                            placeholder="Email"
+                            className="w-full py-2 md:py-3 px-4 text-[14px] md:text-[16px] font-open-sans focus:outline-none"
                         />
-                        <button className="bg-primary text-white px-6 py-3 rounded-r-full hover:bg-white hover:text-primary transition-all">
+                        {/* Subscribe button */}
+                        <button className="bg-[#0059B2] text-white px-4 md:px-6 py-2 md:py-3 rounded-r-full hover:bg-white hover:text-[#0059B2] transition-all font-open-sans">
                             Subscribe
                         </button>
                     </div>
