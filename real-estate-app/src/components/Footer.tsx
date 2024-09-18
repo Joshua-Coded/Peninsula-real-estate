@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../images/logo.png";
-import { FaEnvelope, FaFacebook, FaInstagram, FaPhoneAlt, FaTwitter } from "react-icons/fa";
+import { FaEnvelope, FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
@@ -16,10 +16,7 @@ const Footer: React.FC = () => {
                         Asaba, Delta State, Nigeria.
                     </p>
                     <p className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans">
-                        +2347049453261
-                    </p>
-                    <p className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans">
-                        Peninsuladevelopments@gmail.com
+                        Info@peninsuladevelopments.com
                     </p>
                 </div>
 
@@ -30,11 +27,11 @@ const Footer: React.FC = () => {
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[rgba(255, 255, 255, 0.70)] hover:text-gray-300">
                             <FaFacebook size={24} />
                         </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-[rgba(255, 255, 255, 0.70)] hover:text-gray-300">
-                            <FaTwitter size={24} />
-                        </a>
                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-[rgba(255, 255, 255, 0.70)] hover:text-gray-300">
                             <FaInstagram size={24} />
+                        </a>
+                        <a href="https://wa.me/2347049453261" target="_blank" rel="noopener noreferrer" className="text-[rgba(255, 255, 255, 0.70)] hover:text-gray-300">
+                            <FaWhatsapp size={24} />
                         </a>
                     </div>
                 </div>
