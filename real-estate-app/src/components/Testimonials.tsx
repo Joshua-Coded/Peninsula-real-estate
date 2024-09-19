@@ -47,22 +47,24 @@ const Testimonials: React.FC = () => {
                 <h2 className="text-white text-[24px] font-open-sans font-bold">
                     Hear from Our Satisfied Clients
                 </h2>
-                <p className="text-[rgba(255,255,255,0.7)] text-[16px] font-open-sans">
+                <p className="text-[rgba(255,255,255,0.7)] text-[14px] md:text-[16px] font-open-sans">
                     We help with some of the most excellent properties. See what our clients have to say about our work.
                 </p>
             </div>
 
             {/* Testimonial Image and Text */}
-            <div className="relative flex flex-col items-center justify-center max-w-screen-md">
+            <div className="relative w-full max-w-screen-md flex flex-col items-center justify-center md:flex-row">
                 {/* Testimonial Image */}
-                <img
-                    src={testimonials[currentTestimonial].image}
-                    alt="Testimonial"
-                    className="w-64 h-80 object-cover rounded-md shadow-lg"
-                />
+                <div className="relative w-full md:w-1/2 flex justify-start">
+                    <img
+                        src={testimonials[currentTestimonial].image}
+                        alt="Testimonial"
+                        className="w-64 h-80 object-cover rounded-md shadow-lg md:self-start"
+                    />
+                </div>
 
                 {/* Testimonial Box */}
-                <div className="absolute bottom-[-20%] left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-lg shadow-lg w-[80%] md:max-w-xs">
+                <div className="absolute md:relative w-[80%] h-[50%] md:w-[60%] p-6 bg-white rounded-lg shadow-lg transform md:translate-x-0 md:bottom-0 translate-y-[120%] mr-[-20%] md:translate-y-0">
                     <FaQuoteLeft className="text-primary text-2xl mb-4" />
                     <h3 className="text-lg font-semibold text-gray-800">
                         {testimonials[currentTestimonial].name}
@@ -74,7 +76,7 @@ const Testimonials: React.FC = () => {
             </div>
 
             {/* Carousel Navigation */}
-            <div className="flex justify-center items-center space-x-8 mt-16">
+            <div className="flex justify-center items-center space-x-8 mt-20 md:mt-16">
                 <button
                     className="bg-white p-3 rounded-full shadow-md hover:bg-primary hover:text-white transition-all"
                     onClick={handlePrevious}
@@ -82,7 +84,7 @@ const Testimonials: React.FC = () => {
                     <FaChevronLeft className="text-primary" />
                 </button>
                 <button
-                    className="bg-white p-3 rounded-full shadow-md hover:bg-primary hover:text-white transition-all"
+                    className="bg-white p-3 my-20 rounded-full shadow-md hover:bg-primary hover:text-white transition-all"
                     onClick={handleNext}
                 >
                     <FaChevronRight className="text-primary" />
