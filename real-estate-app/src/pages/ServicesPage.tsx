@@ -81,7 +81,7 @@ const ServicesPage: React.FC = () => {
                     looking for residential, commercial, or industrial real estate, we have the perfect options for you.
                 </p>
                 <div className="text-center mt-6">
-                    <Link to="/investment">
+                    <Link to="/#">
                         <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
                             Learn More
                         </button>
@@ -121,7 +121,7 @@ const ServicesPage: React.FC = () => {
                             Our property management services ensure that your real estate investments are well-maintained and profitable.
                         </p>
                         <div className="mt-6">
-                            <Link to="/management">
+                            <Link to="/#">
                                 <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
                                     Learn More
                                 </button>

@@ -74,9 +74,11 @@ const Navbar: React.FC = () => {
                     {/* Explore Button */}
                     <div className="hidden md:block">
                         <Link
-                            to="/explore"
+                            to="/projects"
                             className="bg-primary text-white py-2 px-4 rounded-md hover:bg-white hover:text-primary transition-all"
-                            style={{ color: 'white', fontFamily: 'Open Sans', fontSize: '18px', fontWeight: '600' }}
+                            onClick={() => {
+                                window.scrollTo(0, 0);  // Scrolls the page to the top
+                            }}
                         >
                             Explore
                         </Link>
@@ -172,7 +174,7 @@ const Navbar: React.FC = () => {
                     {/* Explore Button in Mobile Menu */}
                     <div className="mt-10 w-full flex justify-center">
                         <Link
-                            to="/explore"
+                            to="/projects"
                             className="border-4 border-white text-white py-2 px-6 rounded-md w-3/4 text-center"
                             onClick={() => setIsOpen(false)}
                             style={{ color: 'white', fontFamily: 'Open Sans', fontSize: '18px', fontWeight: '600' }}
