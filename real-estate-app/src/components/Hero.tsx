@@ -38,7 +38,7 @@ const Hero: React.FC = () => {
                 <div className="flex flex-row space-x-4 mt-6 md:mt-8">
 
                     {/* Discover Properties Button */}
-                    <Link to="/properties">
+                    <Link to="/projects">
                         <button
                             onClick={() => handleClick('explore')}
                             className={`py-2 md:py-2 px-4 md:px-6 text-[14px] md:text-[16px] font-semibold font-open-sans text-white bg-[#0059B2] rounded-[8.58px] hover:bg-white hover:text-primary transition-all`}
