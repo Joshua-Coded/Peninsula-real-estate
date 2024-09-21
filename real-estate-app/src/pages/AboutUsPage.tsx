@@ -1,6 +1,6 @@
 import React from "react";
 import approachImage from "../images/approach.png";
-import backgroundImage from "../images/blog3.png";
+import backgroundImage from "../images/image2.avif";
 import ctaBackground from "../images/house1.png";
 import customerFocusIcon from "../images/Group.png";
 import innovationIcon from "../images/Settings.png";
