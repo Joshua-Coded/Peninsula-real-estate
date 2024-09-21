@@ -4,6 +4,11 @@ import { FaEnvelope, FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa"
 import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
+    // Function to scroll to top
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     return (
         <footer className="bg-[#003366] text-white py-10">
             <div className="max-w-screen-lg mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left px-6 md:px-12">
@@ -26,7 +31,7 @@ const Footer: React.FC = () => {
                 {/* Follow Us Section */}
                 <div className="text-left md:text-center space-y-4">
                     <h3 className="text-[16px] font-bold font-open-sans">Follow Us</h3>
-                    <div className="flex justify-start md:justify-center space-x-6"> {/* Centered icons on desktop */}
+                    <div className="flex justify-start md:justify-center space-x-6">
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[rgba(255, 255, 255, 0.70)] hover:text-gray-300">
                             <FaFacebook size={24} />
                         </a>
@@ -44,22 +49,22 @@ const Footer: React.FC = () => {
                     <h3 className="text-[16px] font-bold font-open-sans">Quick Links</h3>
                     <ul className="space-y-2">
                         <li>
-                            <Link to="/about" className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans hover:text-gray-300">
+                            <Link to="/about" onClick={scrollToTop} className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans hover:text-gray-300">
                                 About Us
                             </Link>
                         </li>
                         <li>
-                            <Link to="/services" className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans hover:text-gray-300">
+                            <Link to="/services" onClick={scrollToTop} className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans hover:text-gray-300">
                                 Services
                             </Link>
                         </li>
                         <li>
-                            <Link to="/contact" className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans hover:text-gray-300">
+                            <Link to="/contact" onClick={scrollToTop} className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans hover:text-gray-300">
                                 Contact Us
                             </Link>
                         </li>
                         <li>
-                            <Link to="/blog" className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans hover:text-gray-300">
+                            <Link to="/blog" onClick={scrollToTop} className="text-[rgba(255, 255, 255, 0.70)] text-[16px] font-light font-open-sans hover:text-gray-300">
                                 Blog
                             </Link>
                         </li>
