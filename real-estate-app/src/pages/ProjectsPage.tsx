@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import bg from "../images/image2.avif";
+import bg from "../images/image3.avif";
 import projectImage1 from "../images/house1.png";
 import projectImage2 from "../images/house2.png";
 import projectImage3 from "../images/house3.png";
@@ -7,14 +7,15 @@ import projectImage4 from "../images/house4.png";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-// Project Data (expanded to 15 projects)
-const projects = [
+// Sample project data
+const currentProjects = [
     {
         id: 1,
         name: "Luxury Villa",
         location: "Asaba, Nigeria",
         description: "A beautiful villa with modern amenities.",
         status: "Under Construction",
+        progress: 3, // Progress between 1 and 5
         images: [projectImage1, projectImage2, projectImage3],
     },
     {
@@ -23,49 +24,83 @@ const projects = [
         location: "Lekki, Lagos",
         description: "A contemporary apartment with stunning views.",
         status: "In Progress",
+        progress: 5,
         images: [projectImage2, projectImage3, projectImage4],
     },
     {
         id: 3,
-        name: "Beach House",
+        name: "Beachfront Mansion",
         location: "Victoria Island, Lagos",
-        description: "A luxurious beach house with private access.",
+        description: "A luxurious beachfront property with private access.",
         status: "In Progress",
+        progress: 4,
         images: [projectImage3, projectImage4, projectImage1],
     },
     {
         id: 4,
-        name: "Penthouse Suite",
-        location: "Ikoyi, Lagos",
-        description: "A high-end penthouse with breathtaking views.",
-        status: "In Progress",
+        name: "Hilltop Estate",
+        location: "Enugu, Nigeria",
+        description: "An elegant estate with panoramic hilltop views.",
+        status: "Under Construction",
+        progress: 2,
         images: [projectImage4, projectImage1, projectImage2],
     },
     {
         id: 5,
-        name: "Hillside Residence",
-        location: "Enugu, Nigeria",
-        description: "Elegant residence on a serene hillside.",
+        name: "Sunset Villas",
+        location: "Abuja, Nigeria",
+        description: "Villas offering breathtaking sunset views.",
         status: "In Progress",
+        progress: 5,
         images: [projectImage1, projectImage2, projectImage3],
     },
     {
         id: 6,
-        name: "Mountain View Estate",
-        location: "Jos, Nigeria",
-        description: "Stunning estate with mountain views.",
+        name: "Green Valley Estate",
+        location: "Ibadan, Nigeria",
+        description: "An estate designed with a focus on sustainable living.",
         status: "Under Construction",
-        images: [projectImage4, projectImage1, projectImage2],
+        progress: 3,
+        images: [projectImage2, projectImage3, projectImage4],
     },
     {
         id: 7,
-        name: "Sunset Villas",
-        location: "Abuja, Nigeria",
-        description: "Villas offering sunset views in a premium location.",
+        name: "Mountain View Apartments",
+        location: "Jos, Nigeria",
+        description: "Apartments offering scenic views of the mountains.",
         status: "In Progress",
-        images: [projectImage2, projectImage3, projectImage1],
+        progress: 4,
+        images: [projectImage3, projectImage4, projectImage1],
+    },
+    {
+        id: 8,
+        name: "City Garden Residences",
+        location: "Port Harcourt, Nigeria",
+        description: "Residences surrounded by lush city gardens.",
+        status: "Under Construction",
+        progress: 2,
+        images: [projectImage4, projectImage1, projectImage2],
+    },
+    {
+        id: 9,
+        name: "Oasis Park Homes",
+        location: "Kano, Nigeria",
+        description: "An oasis of tranquility in the heart of Kano.",
+        status: "In Progress",
+        progress: 5,
+        images: [projectImage1, projectImage2, projectImage3],
+    },
+    {
+        id: 10,
+        name: "Lakeside Manor",
+        location: "Uyo, Nigeria",
+        description: "A luxurious manor with lakeside views.",
+        status: "Under Construction",
+        progress: 3,
+        images: [projectImage2, projectImage3, projectImage4],
     },
 ];
+
 
 const upcomingProjects = [
     {
@@ -84,22 +119,6 @@ const upcomingProjects = [
         status: "Upcoming",
         images: [projectImage3, projectImage4, projectImage2],
     },
-    {
-        id: 10,
-        name: "Waterfront Residences",
-        location: "Lagos, Nigeria",
-        description: "Exclusive residences on the waterfront.",
-        status: "Upcoming",
-        images: [projectImage2, projectImage1, projectImage3],
-    },
-    {
-        id: 11,
-        name: "Oasis Park Homes",
-        location: "Kano, Nigeria",
-        description: "A serene oasis in the heart of Kano.",
-        status: "Upcoming",
-        images: [projectImage3, projectImage4, projectImage1],
-    },
 ];
 
 const completedProjects = [
@@ -109,6 +128,7 @@ const completedProjects = [
         location: "Lekki, Lagos",
         description: "Beautiful apartments with sunset views.",
         status: "Completed",
+        progress: 5,
         images: [projectImage4, projectImage1, projectImage2],
     },
     {
@@ -117,23 +137,8 @@ const completedProjects = [
         location: "Banana Island, Lagos",
         description: "Luxurious mansion by the seaside.",
         status: "Completed",
+        progress: 5,
         images: [projectImage3, projectImage2, projectImage1],
-    },
-    {
-        id: 14,
-        name: "Skyline Towers",
-        location: "Abuja, Nigeria",
-        description: "High-rise towers with skyline views.",
-        status: "Completed",
-        images: [projectImage1, projectImage2, projectImage3],
-    },
-    {
-        id: 15,
-        name: "Park View Estates",
-        location: "Port Harcourt, Nigeria",
-        description: "Exclusive estates with park views.",
-        status: "Completed",
-        images: [projectImage2, projectImage3, projectImage4],
     },
 ];
 
@@ -162,20 +167,25 @@ const ProjectsPage: React.FC = () => {
         }
     };
 
-    const getStatusColor = (status: string) => {
-        switch (status) {
-            case "Under Construction":
-                return "bg-yellow-500";
-            case "In Progress":
-                return "bg-blue-500";
-            case "Upcoming":
-                return "bg-green-500";
-            case "Completed":
-                return "bg-gray-500";
-            default:
-                return "bg-gray-400";
+    const getProgressColor = (status: string, step: number, progress: number) => {
+        if (status === "Completed") {
+            return "bg-green-500"; // Green for completed projects
+        } else if (status === "In Progress" || status === "Under Construction") {
+            return progress >= step ? "bg-yellow-500" : "bg-gray-300"; // Yellow for current progress
         }
+        return "";
     };
+
+    const renderProgressBar = (status: string, progress: number) => (
+        <div className="flex space-x-1 mt-4">
+            {[1, 2, 3, 4, 5].map((step) => (
+                <div
+                    key={step}
+                    className={`w-4 h-4 rounded-full ${getProgressColor(status, step, progress)}`}
+                ></div>
+            ))}
+        </div>
+    );
 
     return (
         <div className="py-12">
@@ -200,29 +210,96 @@ const ProjectsPage: React.FC = () => {
                 </div>
             </div>
 
-
-
-
             {/* Current Projects Section */}
             <div className="px-6 py-12">
                 <h2 className="text-3xl font-bold text-center mb-8">Current Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {currentProjects.map((project) => (
                         <div key={project.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
-                            <img src={project.images[0]} alt={project.name} className="w-full h-64 object-cover" />
+                            <img
+                                src={project.images[0]}
+                                alt={project.name}
+                                className="w-full h-64 md:max-w-[80%] object-cover mx-auto" // Added max-width for desktop
+                            />
                             <div className="p-6">
-                                <h3 className="text-xl font-semibold shadow-md">{project.name}</h3>
-                                <p className="text-gray-600 shadow-md">{project.location}</p>
-                                <p className="mt-2 shadow-md">{project.description}</p>
+                                <h3 className="text-xl font-semibold">{project.name}</h3>
+                                <p className="text-gray-600">{project.location}</p>
+                                <p className="mt-2">{project.description}</p>
+                                {renderProgressBar(project.status, project.progress)} {/* Yellow progress bar for current projects */}
                                 <div className="flex justify-between items-center mt-4">
-                                    <p className={`text-sm text-white px-2 py-1 rounded-full ${getStatusColor(project.status)}`}>
+                                    <p className={`text-sm text-white px-2 py-1 rounded-full ${project.status === "Completed" ? "bg-green-500" : "bg-yellow-500"}`}>
                                         {project.status}
                                     </p>
                                     <button
-                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all shadow-md"
+                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all"
                                         onClick={() => openModal(project)}
                                     >
                                         View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Upcoming Projects Section */}
+            <div className="px-6 py-12">
+                <h2 className="text-3xl font-bold text-center mb-8">Upcoming Projects</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {upcomingProjects.map((project) => (
+                        <div key={project.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
+                            <img
+                                src={project.images[0]}
+                                alt={project.name}
+                                className="w-full h-64 md:max-w-[80%] object-cover mx-auto" // Added max-width for desktop
+                            />
+                            <div className="p-6">
+                                <h3 className="text-xl font-semibold">{project.name}</h3>
+                                <p className="text-gray-600">{project.location}</p>
+                                <p className="mt-2">{project.description}</p>
+                                <div className="flex justify-between items-center mt-4">
+                                    <p className={`text-sm text-white px-2 py-1 rounded-full bg-green-500`}>
+                                        {project.status}
+                                    </p>
+                                    <button
+                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all"
+                                        onClick={() => openModal(project)}
+                                    >
+                                        View Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Completed Projects Section */}
+            <div className="px-6 py-12">
+                <h2 className="text-3xl font-bold text-center mb-8">Completed Projects</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {completedProjects.map((project) => (
+                        <div key={project.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
+                            <img
+                                src={project.images[0]}
+                                alt={project.name}
+                                className="w-full h-64 md:max-w-[80%] object-cover mx-auto" // Added max-width for desktop
+                            />
+                            <div className="p-6">
+                                <h3 className="text-xl font-semibold">{project.name}</h3>
+                                <p className="text-gray-600">{project.location}</p>
+                                <p className="mt-2">{project.description}</p>
+                                {renderProgressBar(project.status, project.progress)} {/* Green progress bar for completed projects */}
+                                <div className="flex justify-between items-center mt-4">
+                                    <p className="text-sm text-white px-2 py-1 rounded-full bg-green-500">
+                                        {project.status}
+                                    </p>
+                                    <button
+                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all"
+                                        onClick={() => openModal(project)}
+                                    >
+                                        View Gallery
                                     </button>
                                 </div>
                             </div>
@@ -275,78 +352,6 @@ const ProjectsPage: React.FC = () => {
                     </div>
                 </div>
             )}
-
-            {/* Upcoming Projects Section */}
-            <div className="px-6 py-12">
-                <h2 className="text-3xl font-bold text-center mb-8">Upcoming Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {upcomingProjects.map((project) => (
-                        <div key={project.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
-                            <img src={project.images[0]} alt={project.name} className="w-full h-64 object-cover" />
-                            <div className="p-6">
-                                <h3 className="text-xl font-semibold shadow-md">{project.name}</h3>
-                                <p className="text-gray-600 shadow-md">{project.location}</p>
-                                <p className="mt-2 shadow-md">{project.description}</p>
-                                <div className="flex justify-between items-center mt-4">
-                                    <p className={`text-sm text-white px-2 py-1 rounded-full ${getStatusColor(project.status)}`}>
-                                        {project.status}
-                                    </p>
-                                    <button
-                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all shadow-md"
-                                        onClick={() => openModal(project)}
-                                    >
-                                        View Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Completed Projects Section */}
-            <div className="px-6 py-12">
-                <h2 className="text-3xl font-bold text-center mb-8">Completed Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {completedProjects.map((project) => (
-                        <div key={project.id} className="bg-white shadow-lg rounded-lg overflow-hidden relative">
-                            <img src={project.images[0]} alt={project.name} className="w-full h-64 object-cover" />
-                            <div className="p-6">
-                                <h3 className="text-xl font-semibold shadow-md">{project.name}</h3>
-                                <p className="text-gray-600 shadow-md">{project.location}</p>
-                                <p className="mt-2 shadow-md">{project.description}</p>
-                                <div className="flex justify-between items-center mt-4">
-                                    <p className={`text-sm text-white px-2 py-1 rounded-full ${getStatusColor(project.status)}`}>
-                                        {project.status}
-                                    </p>
-                                    <button
-                                        className="bg-primary text-white py-2 px-4 rounded hover:bg-white hover:text-primary transition-all shadow-md"
-                                        onClick={() => openModal(project)}
-                                    >
-                                        View Details
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* Invest Now Section */}
-            <div
-                className="w-screen h-[400px] bg-cover bg-center text-white flex justify-center items-center relative -mx-4"
-                style={{ backgroundImage: `url(${projectImage4})` }} // Adjust image path if needed
-            >
-                <div className="text-center">
-                    <h2 className="text-4xl md:text-5xl font-bold">Invest Now</h2>
-                    <p className="mt-4 text-xl">Be a part of our successful journey. Contact us today.</p>
-                    <Link to="/contact">
-                        <button className="mt-6 bg-primary text-white py-3 px-8 rounded-md hover:bg-white hover:text-primary transition-all">
-                            Contact Us
-                        </button>
-                    </Link>
-                </div>
-            </div>
         </div>
     );
 };
