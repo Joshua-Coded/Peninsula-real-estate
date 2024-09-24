@@ -54,6 +54,10 @@ const Services: React.FC = () => {
         };
     }, [hasCounted]);
 
+    const scrollToTop = () => {
+        window.scrollTo(0, 0); // Scrolls the page to the top
+    };
+
     return (
         <div className="flex flex-col justify-center items-center gap-16 py-12">
             <div className="text-center">
@@ -94,7 +98,7 @@ const Services: React.FC = () => {
                     </div>
                 </div>
                 <div className="bg-[#0059B2] text-white rounded-lg py-3 px-8 text-center hover:bg-opacity-90 transition-all">
-                    <Link to="/services" className="text-base font-semibold font-open-sans">
+                    <Link to="/services" className="text-base font-semibold font-open-sans" onClick={scrollToTop}>
                         Explore Our Services
                     </Link>
                 </div>

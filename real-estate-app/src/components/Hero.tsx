@@ -7,6 +7,7 @@ const Hero: React.FC = () => {
 
     const handleClick = (buttonName: string) => {
         setActiveButton(buttonName);
+        window.scrollTo(0, 0);  // Scroll to the top of the page
     };
 
     return (

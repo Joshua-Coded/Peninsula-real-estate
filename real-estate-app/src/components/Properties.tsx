@@ -64,7 +64,7 @@ const Properties: React.FC = () => {
 
             {/* View All Properties Button */}
             <div className="mt-8">
-                <Link to="/properties">
+                <Link to="/projects">
                     <button className="bg-[#0059B2] text-white py-3 px-8 rounded-md hover:bg-white hover:text-[#0059B2] transition-all font-open-sans font-semibold text-[16px]">
                         View all properties
                     </button>

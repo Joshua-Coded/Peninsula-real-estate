@@ -29,6 +29,10 @@ const Navbar: React.FC = () => {
         };
     }, []);
 
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
+    };
+
     return (
         <nav
             className={`fixed w-full top-0 z-50 transition-all ${isMobile || scrollPosition > 100 ? "bg-primary" : "bg-transparent"
@@ -39,7 +43,7 @@ const Navbar: React.FC = () => {
                 <div className="flex justify-between items-center h-16">
                     {/* Logo */}
                     <div className="flex-shrink-0">
-                        <Link to="/">
+                        <Link to="/" onClick={scrollToTop}>
                             <img
                                 src={logo}
                                 alt="Logo"
@@ -51,22 +55,22 @@ const Navbar: React.FC = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex flex-grow justify-center space-x-6 text-sm">
-                        <Link to="/" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>
+                        <Link to="/" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
                             Home
                         </Link>
-                        <Link to="/about" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>
+                        <Link to="/about" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
                             About
                         </Link>
-                        <Link to="/projects" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>
+                        <Link to="/projects" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
                             Our Projects
                         </Link>
-                        <Link to="/services" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>
+                        <Link to="/services" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
                             Services
                         </Link>
-                        <Link to="/blog" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>
+                        <Link to="/blog" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
                             Blog
                         </Link>
-                        <Link to="/contact" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>
+                        <Link to="/contact" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
                             Contact Us
                         </Link>
                     </div>
@@ -77,7 +81,7 @@ const Navbar: React.FC = () => {
                             to="/projects"
                             className="bg-primary text-white py-2 px-4 rounded-md hover:bg-white hover:text-primary transition-all"
                             onClick={() => {
-                                window.scrollTo(0, 0);  // Scrolls the page to the top
+                                scrollToTop();
                             }}
                         >
                             Explore
@@ -117,7 +121,7 @@ const Navbar: React.FC = () => {
                     <div className="flex justify-between items-center w-full px-4 py-4">
                         {/* Logo */}
                         <div className="flex-shrink-0 text-white text-2xl font-bold">
-                            <Link to="/">
+                            <Link to="/" onClick={scrollToTop}>
                                 <img
                                     src={logo}
                                     alt="Logo"
@@ -152,22 +156,22 @@ const Navbar: React.FC = () => {
                     {/* Navigation Links */}
                     <ul className="flex flex-col space-y-8 text-sm w-full px-8 mt-10 text-normal font-normal">
                         <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/" onClick={() => setIsOpen(false)} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Home</Link>
+                            <Link to="/" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Home</Link>
                         </li>
                         <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/about" onClick={() => setIsOpen(false)} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>About</Link>
+                            <Link to="/about" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>About</Link>
                         </li>
                         <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/projects" onClick={() => setIsOpen(false)} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Our Projects</Link>
+                            <Link to="/projects" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Our Projects</Link>
                         </li>
                         <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/services" onClick={() => setIsOpen(false)} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Services</Link>
+                            <Link to="/services" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Services</Link>
                         </li>
                         <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/blog" onClick={() => setIsOpen(false)} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Blog</Link>
+                            <Link to="/blog" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Blog</Link>
                         </li>
                         <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/contact" onClick={() => setIsOpen(false)} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Contact Us</Link>
+                            <Link to="/contact" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Contact Us</Link>
                         </li>
                     </ul>
 
@@ -176,7 +180,7 @@ const Navbar: React.FC = () => {
                         <Link
                             to="/projects"
                             className="border-4 border-white text-white py-2 px-6 rounded-md w-3/4 text-center"
-                            onClick={() => setIsOpen(false)}
+                            onClick={() => { setIsOpen(false); scrollToTop(); }}
                             style={{ color: 'white', fontFamily: 'Open Sans', fontSize: '18px', fontWeight: '600' }}
                         >
                             Explore

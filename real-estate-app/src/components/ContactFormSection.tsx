@@ -1,86 +1,115 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaEnvelope, FaFacebook, FaInstagram, FaMapMarkerAlt, FaPhoneAlt, FaTwitter } from "react-icons/fa";
 
+// import emailjs from "emailjs-com";
+
 const ContactFormSection: React.FC = () => {
+    // Form state variables
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+    const [formStatus, setFormStatus] = useState("");
+
+    // Handle input change
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    // Handle form submission
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        // Replace the below with your EmailJS service, template, and user IDs
+        const serviceId = "YOUR_SERVICE_ID";
+        const templateId = "YOUR_TEMPLATE_ID";
+        const userId = "YOUR_USER_ID";
+
+        // emailjs.send(serviceId, templateId, formData, userId)
+        //     .then((response) => {
+        //         setFormStatus("Message sent successfully!");
+        //         setFormData({ name: '', email: '', message: '' }); 
+        //     })
+        //     .catch((error) => {
+        //         setFormStatus("Failed to send message. Please try again later.");
+        //         console.error('Error sending message:', error);
+        //     });
+    };
+
     return (
         <div className="py-12 px-6">
-            {/* Section Header */}
             <h2 className="text-3xl font-bold text-center">Send Us a Message</h2>
             <p className="text-lg text-center mt-4 max-w-4xl mx-auto">
                 Fill out the form to get in touch with us. We'll get back to you as soon as possible.
             </p>
 
-            {/* Contact Details and Form Grid */}
+            {/* Form grid */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                {/* Left Side: Contact Details and Background Box */}
-                <div className="col-span-1 bg-primary text-white rounded-lg shadow-lg p-6 flex flex-col justify-between">
+                {/* Contact Details */}
+                <div className="col-span-1 bg-primary text-white rounded-lg shadow-lg p-6">
                     <div className="space-y-6">
                         <h3 className="text-xl font-bold">Contact Details</h3>
-                        <p className="flex items-center">
-                            <FaPhoneAlt className="inline-block mr-2 text-white" /> +123 456 7890
-                        </p>
-                        <p className="flex items-center">
-                            <FaEnvelope className="inline-block mr-2 text-white" /> info@peninsula.com
-                        </p>
-                        <p className="flex items-center">
-                            <FaMapMarkerAlt className="inline-block mr-2 text-white" /> 1234 Elm St, Asaba, Nigeria
-                        </p>
+                        <p><FaPhoneAlt className="inline-block mr-2 text-white" /> +123 456 7890</p>
+                        <p><FaEnvelope className="inline-block mr-2 text-white" /> info@peninsula.com</p>
+                        <p><FaMapMarkerAlt className="inline-block mr-2 text-white" /> 1234 Elm St, Asaba, Nigeria</p>
                     </div>
 
-                    {/* Social Media Icons (Bottom 10%) */}
-                    <div className="flex justify-center space-x-4 mt-auto mb-4">
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
-                            <FaFacebook size={24} />
-                        </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
-                            <FaTwitter size={24} />
-                        </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300">
-                            <FaInstagram size={24} />
-                        </a>
+                    {/* Social Media Icons */}
+                    <div className="flex justify-start space-x-4 mt-[10%]">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300"><FaFacebook size={24} /></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300"><FaTwitter size={24} /></a>
+                        <a href="https://www.instagram.com/peninsula_developments?igsh=MWtocG8yemdsbndpYg==" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300"><FaInstagram size={24} /></a>
                     </div>
                 </div>
 
-                {/* Background Box Next to Contact Details */}
-                <div className="col-span-2 bg-gray-100 rounded-lg p-6 shadow-lg">
-                    <h3 className="text-xl font-bold text-primary">Why Reach Out to Us?</h3>
-                    <p className="text-lg mt-4 leading-relaxed">
-                        Whether you have a question about our services, need assistance with an ongoing project, or want to learn more about investment opportunities, we're here to help.
-                        Feel free to get in touch with us!
-                    </p>
-                </div>
-
-                {/* Right Side: Contact Form (70% Width) */}
+                {/* Form Section */}
                 <div className="col-span-2 bg-white rounded-lg p-6 shadow-lg space-y-4">
-                    <form className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
                             <label className="block text-gray-600">Full Name</label>
                             <input
                                 type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleInputChange}
                                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-primary"
                                 placeholder="Your Name"
+                                required
                             />
                         </div>
                         <div>
                             <label className="block text-gray-600">Email Address</label>
                             <input
                                 type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
                                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-primary"
                                 placeholder="Your Email"
+                                required
                             />
                         </div>
                         <div>
                             <label className="block text-gray-600">Message</label>
                             <textarea
+                                name="message"
+                                value={formData.message}
+                                onChange={handleInputChange}
                                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:ring-primary"
                                 rows={5}
                                 placeholder="Your Message"
+                                required
                             ></textarea>
                         </div>
-                        <button className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all w-full">
+                        <button type="submit" className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all w-full">
                             Send Message
                         </button>
                     </form>
+
+                    {/* Display form submission status */}
+                    {formStatus && <p className="mt-4 text-center text-green-500">{formStatus}</p>}
                 </div>
             </div>
         </div>

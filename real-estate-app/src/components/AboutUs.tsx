@@ -5,6 +5,10 @@ import aboutImage3 from "../images/house2.png";
 import { Link } from "react-router-dom";
 
 const AboutUs: React.FC = () => {
+    const scrollToTop = () => {
+        window.scrollTo(0, 0);
+    };
+
     return (
         <div className="w-full flex flex-col justify-start items-center gap-16 py-12 px-6">
             {/* Title and Paragraph Section */}
@@ -20,7 +24,7 @@ const AboutUs: React.FC = () => {
                 </p>
 
                 {/* Learn More Button */}
-                <Link to="/about" className="inline-flex justify-center items-center">
+                <Link to="/" onClick={scrollToTop} className="inline-flex justify-center items-center">
                     <button className="bg-[#0059B2] text-white py-3 px-8 rounded-md hover:bg-white hover:text-[#0059B2] transition-all font-open-sans font-semibold text-[16px]">
                         Learn More About Us
                     </button>
