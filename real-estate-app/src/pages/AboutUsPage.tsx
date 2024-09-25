@@ -27,7 +27,7 @@ const AboutUsPage: React.FC = () => {
                         provide exceptional living spaces for homeowners and investors globally.
                     </p>
                     <div className="mt-8">
-                        <Link to="/contact">
+                        <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
                             <button className="bg-primary hover:bg-primary-dark transition-colors duration-300 text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-lg">
                                 Get in touch
                             </button>
@@ -139,7 +139,7 @@ const AboutUsPage: React.FC = () => {
                     <p className="text-white text-lg md:text-xl mb-8">
                         Explore our properties and discover how Peninsula Developments Limited can help you find your dream home or investment opportunity.
                     </p>
-                    <Link to="/contact">
+                    <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
                         <button className="bg-primary hover:bg-primary-dark transition-colors duration-300 text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-lg">
                             Contact Us
                         </button>

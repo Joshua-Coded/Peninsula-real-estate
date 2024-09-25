@@ -24,7 +24,7 @@ const AboutUs: React.FC = () => {
                 </p>
 
                 {/* Learn More Button */}
-                <Link to="/" onClick={scrollToTop} className="inline-flex justify-center items-center">
+                <Link to="/about" onClick={scrollToTop} className="inline-flex justify-center items-center">
                     <button className="bg-[#0059B2] text-white py-3 px-8 rounded-md hover:bg-white hover:text-[#0059B2] transition-all font-open-sans font-semibold text-[16px]">
                         Learn More About Us
                     </button>

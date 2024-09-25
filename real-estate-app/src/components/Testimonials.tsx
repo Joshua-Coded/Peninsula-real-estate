@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import testimonialImage1 from "../images/test1.png";
-import testimonialImage2 from "../images/test2.jpeg";
-import testimonialImage3 from "../images/test3.jpeg";
+import testimonialImage2 from "../images/test10.jpeg";
+import testimonialImage3 from "../images/test11.jpeg";
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from "react-icons/fa";
 
 const Testimonials: React.FC = () => {

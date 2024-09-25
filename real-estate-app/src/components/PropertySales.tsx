@@ -42,7 +42,7 @@ const PropertySales = () => {
             </p>
             <div className="text-center mt-6">
                 {/* Updated Link to navigate to the projects page */}
-                <Link to="/projects">
+                <Link to="/projects" onClick={() => window.scrollTo(0, 0)}>
                     <button className="bg-white text-primary py-2 px-6 rounded-md hover:bg-primary hover:text-white transition-all">
                         Explore Properties
                     </button>
