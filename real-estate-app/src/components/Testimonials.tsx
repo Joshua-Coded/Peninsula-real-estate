@@ -179,3 +179,18 @@ export default Testimonials;
 
 
 
+const faqs = [
+    { question: "How do I contact customer service?", answer: "You can reach us through email or phone." },
+    { question: "What are your operating hours?", answer: "We are open from Monday to Friday, 9am to 6pm." },
+    { question: "How can I schedule a property visit?", answer: "Simply contact us via the form or social media." },
+    { question: "Do you offer property management services?", answer: "Yes, we provide full property management services." },
+    { question: "What areas do you serve?", answer: "We provide services in multiple cities across Nigeria." },
+    { question: "Can I get a virtual tour?", answer: "Yes, virtual tours are available upon request." },
+    { question: "Do you offer investment opportunities?", answer: "We have a wide range of investment options for you." },
+    { question: "How long does it take to finalize a deal?", answer: "The timeline varies depending on the property and client needs." },
+    { question: "Can I get assistance with property documentation?", answer: "Yes, we provide full support with documentation." },
+    { question: "Do you offer consulting services?", answer: "Yes, we offer real estate consulting for buyers and investors." },
+    { question: "Are your properties customizable?", answer: "Yes, we offer customization options for some of our properties." },
+    { question: "What are your payment options?", answer: "We accept various forms of payment including bank transfers and financing options." },
+];
+
