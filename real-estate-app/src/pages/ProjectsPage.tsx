@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from "react";
 import bg from "../images/image3.avif";
-import projectImage1 from "../images/house1.png";
-import projectImage2 from "../images/house2.png";
-import projectImage3 from "../images/house3.png";
+import completed1 from "../images/completed1.png";
+import completed2 from "../images/completed2.png";
+import completed3 from "../images/completed3.png";
+import completed4 from "../images/house3.png";
+import completed5 from "../images/image3.avif";
+import completed6 from "../images/house6.png";
+import projectImage1 from "../images/image1.avif";
+import projectImage2 from "../images/current.png";
+import projectImage3 from "../images/current1.png";
 import projectImage4 from "../images/house4.png";
 import { Link } from "react-router-dom";
 
@@ -172,7 +178,7 @@ const completedProjects: Project[] = [
         description: "Beautiful apartments with sunset views and premium amenities, completed with attention to detail.",
         status: "Completed",
         progress: 5,
-        images: [projectImage4, projectImage1, projectImage2],
+        images: [completed1, completed2, completed3, completed4, completed5, completed6],
         features: ["3 Bedrooms", "Gym", "Pool"],
         price: "$400,000",
         startDate: "2023-01",

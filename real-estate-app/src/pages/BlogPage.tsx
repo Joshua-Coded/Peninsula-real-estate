@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import authorImage1 from "../images/test1.png";
-import authorImage2 from "../images/test2.jpeg";
-import authorImage3 from "../images/test3.jpeg";
+import authorImage2 from "../images/test11.jpeg";
+import authorImage3 from "../images/test13.webp";
 import bg from "../images/bgImage.png";
 import blogImage1 from "../images/blog1.png";
 import blogImage2 from "../images/blog2.png";
