@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import approachImage from "../images/approach.png";
 import backgroundImage from "../images/image2.avif";
 import ctaBackground from "../images/house1.png";
@@ -8,142 +8,226 @@ import integrityIcon from "../images/house-heart.png";
 import missionImage from "../images/mission.png";
 import qualityIcon from "../images/User.png";
 import visionImage from "../images/house5.png";
-import { FaArrowRight } from "react-icons/fa";
+import { ArrowRight, Award, ChevronDown, Lightbulb, Shield, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const AboutUsPage: React.FC = () => {
+const AboutUsPage = () => {
+    const valuesRef = useRef<HTMLDivElement>(null);
+
+    const fadeInOnScroll = (entries: IntersectionObserverEntry[]) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('opacity-100', 'translate-y-0');
+                entry.target.classList.remove('opacity-0', 'translate-y-10');
+            }
+        });
+    };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(fadeInOnScroll, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.fade-in-section').forEach((element) => {
+            observer.observe(element);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+    const values = [
+        {
+            icon: <Shield className="w-8 h-8" />,
+            title: "Integrity",
+            description: "We conduct our business with the highest ethical standards, ensuring transparency and trust in every interaction."
+        },
+        {
+            icon: <Award className="w-8 h-8" />,
+            title: "Quality",
+            description: "We prioritize exceptional quality in every project, delivering premium properties that stand the test of time."
+        },
+        {
+            icon: <Lightbulb className="w-8 h-8" />,
+            title: "Innovation",
+            description: "We embrace cutting-edge technology and innovative solutions to create future-ready living spaces."
+        },
+        {
+            icon: <Users className="w-8 h-8" />,
+            title: "Customer Focus",
+            description: "Our clients' satisfaction drives everything we do, from initial concept to final delivery."
+        }
+    ];
+
     return (
-        <div>
-            {/* Fullscreen About Us Section */}
+        <div className="overflow-hidden">
+            {/* Hero Section */}
             <div
-                className="h-screen w-full bg-cover bg-center text-white flex flex-col justify-center items-center"
-                style={{ backgroundImage: `url(${backgroundImage})` }}
+                className="relative min-h-screen flex items-center justify-center"
+                style={{
+                    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundImage})`
+                }}
             >
-                <div className="text-center px-4 max-w-2xl">
-                    <h1 className="text-white text-4xl md:text-5xl font-bold font-open-sans">Who We Are</h1>
-                    <p className="text-white text-lg md:text-xl mt-6 font-open-sans">
-                        Peninsula Developments Limited is a forward-thinking real estate company
-                        dedicated to transforming the real estate landscape. Our mission is to
-                        provide exceptional living spaces for homeowners and investors globally.
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent" />
+                <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
+                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 opacity-0 translate-y-10 animate-fade-in-up">
+                        Who We Are
+                    </h1>
+                    <p className="text-xl md:text-2xl text-white/90 mb-8 opacity-0 translate-y-10 animate-fade-in-up animation-delay-200">
+                        Peninsula Developments Limited is shaping the future of real estate through innovation,
+                        excellence, and unwavering commitment to quality.
                     </p>
-                    <div className="mt-8">
-                        <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
-                            <button className="bg-primary hover:bg-primary-dark transition-colors duration-300 text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-lg">
-                                Get in touch
-                            </button>
-                        </Link>
+                    <Link
+                        to="/contact"
+                        className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm text-white px-8 py-4 
+                            rounded-full hover:bg-white hover:text-primary transition-all duration-300 
+                            text-lg font-medium border border-white/20 opacity-0 translate-y-10 animate-fade-in-up 
+                            animation-delay-400"
+                    >
+                        Get in touch
+                        <ArrowRight className="w-5 h-5" />
+                    </Link>
+                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+                        <ChevronDown className="w-8 h-8 text-white animate-bounce" />
                     </div>
                 </div>
             </div>
 
             {/* Our Approach Section */}
-            <div className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
-                <h2 className="text-blue-600 text-3xl md:text-4xl font-semibold text-center mb-8">Our Approach</h2>
-                <p className="text-gray-700 text-lg md:text-xl mb-12 max-w-3xl mx-auto text-center">
-                    At Peninsula Developments, we blend innovation with practicality. Our team of experts meticulously plans each project, ensuring that every detail aligns with our commitment to quality and customer satisfaction. We believe in creating properties that are not only luxurious but also sustainable and functional.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                    {/* Left side with "What Sets Us Apart" and arrow content */}
-                    <div className="space-y-8">
-                        <h3 className="text-blue-600 text-2xl md:text-3xl font-semibold mb-6">What Sets Us Apart</h3>
-                        <div className="space-y-6">
-                            {[
-                                "We focus on our clients first, creating spaces that align perfectly with their needs and aspirations.",
-                                "Our developments integrate cutting-edge technology to deliver sustainable, future-proof solutions.",
-                                "Our commitment to long-term value ensures every project brings lasting benefits for clients and communities.",
-                                "We uphold unwavering standards of quality and integrity, ensuring excellence in every project we undertake."
-                            ].map((text, index) => (
-                                <div key={index} className="flex items-start space-x-4">
-                                    <FaArrowRight className="text-blue-500 text-xl mt-1 flex-shrink-0" />
-                                    <p className="text-gray-700 text-lg leading-relaxed">{text}</p>
-                                </div>
-                            ))}
-                        </div>
+            <div className="py-24 px-4 bg-gradient-to-b from-white to-gray-50">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16 fade-in-section opacity-0 translate-y-10 transition-all duration-700">
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Our Approach</h2>
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                            We blend innovation with practicality, ensuring every project delivers exceptional value
+                            while maintaining our commitment to sustainability and excellence.
+                        </p>
                     </div>
 
-                    {/* Right side with image */}
-                    <div className="flex justify-center">
-                        <img
-                            src={approachImage}
-                            alt="Our Approach"
-                            className="w-full h-auto max-h-96 object-cover rounded-lg shadow-xl"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div className="fade-in-section opacity-0 translate-y-10 transition-all duration-700">
+                            <h3 className="text-3xl font-bold text-gray-900 mb-8">What Sets Us Apart</h3>
+                            <div className="space-y-6">
+                                {[
+                                    "Client-Centric Focus: Creating spaces that perfectly align with individual needs.",
+                                    "Innovative Solutions: Integrating cutting-edge technology for future-ready homes.",
+                                    "Sustainable Development: Ensuring long-term value and environmental responsibility.",
+                                    "Quality Assurance: Maintaining exceptional standards throughout every project."
+                                ].map((text, index) => (
+                                    <div key={index}
+                                        className="flex items-start gap-4 p-4 bg-white rounded-lg shadow-lg 
+                                            hover:shadow-xl transition-all duration-300 cursor-pointer group"
+                                    >
+                                        <ArrowRight className="w-6 h-6 text-primary flex-shrink-0 
+                                            group-hover:translate-x-1 transition-transform duration-300" />
+                                        <p className="text-gray-700">{text}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="relative fade-in-section opacity-0 translate-y-10 transition-all duration-700">
+                            <div className="absolute inset-0 bg-primary/10 rounded-lg transform rotate-3 transition-transform group-hover:rotate-6" />
+                            <img
+                                src={approachImage}
+                                alt="Our Approach"
+                                className="relative rounded-lg shadow-xl transform transition-all duration-500 hover:-translate-y-2"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Mission & Vision Section */}
-            <div className="py-16 md:py-24 px-4 md:px-8 bg-gray-50">
-                <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-                    {/* Mission */}
-                    <div className="space-y-6">
-                        <h2 className="text-gray-900 text-3xl md:text-4xl font-semibold">Our Mission</h2>
-                        <p className="text-gray-700 text-lg">
-                            To redefine luxury living by creating high-quality, sustainable properties that exceed our clients' expectations.
-                        </p>
-                        <img src={missionImage} alt="Mission" className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg" />
-                    </div>
-
-                    {/* Vision */}
-                    <div className="space-y-6">
-                        <img src={visionImage} alt="Vision" className="w-full h-64 md:h-80 object-cover rounded-lg shadow-lg" />
-                        <h2 className="text-gray-900 text-3xl md:text-4xl font-semibold">Our Vision</h2>
-                        <p className="text-gray-700 text-lg">
-                            To be a global leader in real estate development, known for our commitment to excellence and innovation.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            {/* Our Values Section */}
-            <div className="py-16 md:py-24 px-4 md:px-8 max-w-7xl mx-auto">
-                <h2 className="text-center text-3xl md:text-4xl font-semibold mb-12">Our Values</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {[{
-                        icon: integrityIcon,
-                        title: "Integrity",
-                        description: "We conduct our business with the highest ethical standards."
-                    }, {
-                        icon: qualityIcon,
-                        title: "Quality",
-                        description: "We prioritize quality in every project we undertake."
-                    }, {
-                        icon: innovationIcon,
-                        title: "Innovation",
-                        description: "We embrace innovation to deliver the best solutions."
-                    }, {
-                        icon: customerFocusIcon,
-                        title: "Customer Focus",
-                        description: "We put our clients at the center of everything we do."
-                    }].map((value, index) => (
-                        <div key={index} className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center">
-                            <div className="bg-yellow-500 p-3 rounded-full mb-4">
-                                <img src={value.icon} alt={`${value.title} Icon`} className="w-8 h-8" />
+            <div className="py-24 bg-primary/5">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+                        <div className="relative fade-in-section opacity-0 translate-y-10 transition-all duration-700">
+                            <div className="group cursor-pointer">
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 rounded-lg transform -rotate-3 transition-transform group-hover:rotate-0" />
+                                <img src={missionImage} alt="Mission" className="relative rounded-lg shadow-xl" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="text-center text-white p-6">
+                                        <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+                                        <p>Redefining luxury living through sustainable innovation and exceptional quality.</p>
+                                    </div>
+                                </div>
                             </div>
-                            <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-                            <p className="text-gray-600">
-                                {value.description}
-                            </p>
                         </div>
-                    ))}
+
+                        <div className="relative fade-in-section opacity-0 translate-y-10 transition-all duration-700">
+                            <div className="group cursor-pointer">
+                                <div className="absolute inset-0 bg-gradient-to-l from-primary/20 to-primary/10 rounded-lg transform rotate-3 transition-transform group-hover:rotate-0" />
+                                <img src={visionImage} alt="Vision" className="relative rounded-lg shadow-xl" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="text-center text-white p-6">
+                                        <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
+                                        <p>Leading global real estate development through excellence and innovation.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            {/* Full-Width Call to Action Section */}
-            <div
-                className="min-h-screen w-full bg-cover bg-center text-white flex items-center justify-center"
-                style={{ backgroundImage: `url(${ctaBackground})` }}
-            >
-                <div className="text-center max-w-2xl px-4">
-                    <h2 className="text-4xl md:text-5xl font-semibold mb-6">Join Us on This Journey</h2>
-                    <p className="text-white text-lg md:text-xl mb-8">
-                        Explore our properties and discover how Peninsula Developments Limited can help you find your dream home or investment opportunity.
-                    </p>
-                    <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
-                        <button className="bg-primary hover:bg-primary-dark transition-colors duration-300 text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-lg">
-                            Contact Us
-                        </button>
-                    </Link>
+            {/* Values Section */}
+            <div className="py-24 px-4" ref={valuesRef}>
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-section opacity-0 translate-y-10 transition-all duration-700">
+                        Our Core Values
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        {values.map((value, index) => (
+                            <div
+                                key={index}
+                                className="group bg-white rounded-xl p-8 shadow-lg hover:shadow-xl 
+                                    transition-all duration-300 fade-in-section opacity-0 translate-y-10 
+                                    hover:-translate-y-2"
+                                style={{ transitionDelay: `${index * 100}ms` }}
+                            >
+                                <div className="flex flex-col items-center text-center">
+                                    <div className="p-4 bg-primary/10 rounded-full text-primary mb-6 
+                                        group-hover:scale-110 transition-transform duration-300">
+                                        {value.icon}
+                                    </div>
+                                    <h3 className="text-xl font-bold mb-4 text-gray-900">{value.title}</h3>
+                                    <p className="text-gray-600">{value.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* Call to Action Section */}
+            <div className="relative min-h-screen">
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${ctaBackground})`
+                    }}
+                />
+                <div className="relative z-10 flex items-center justify-center min-h-screen">
+                    <div className="text-center px-4 max-w-3xl mx-auto fade-in-section opacity-0 translate-y-10 transition-all duration-700">
+                        <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                            Join Us on This Journey
+                        </h2>
+                        <p className="text-xl text-white/90 mb-12">
+                            Let's create exceptional living spaces together. Discover how Peninsula Developments
+                            can transform your real estate aspirations into reality.
+                        </p>
+                        <Link
+                            to="/contact"
+                            className="inline-flex items-center gap-2 bg-white text-primary px-8 py-4 
+                                rounded-full hover:bg-primary hover:text-white transition-all duration-300 
+                                text-lg font-medium"
+                        >
+                            Start Your Journey
+                            <ArrowRight className="w-5 h-5" />
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
