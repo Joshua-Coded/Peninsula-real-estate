@@ -24,3 +24,36 @@
     animation: gradient-x 5s ease infinite;
     /* Animate color transition over 5 seconds */
 }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animation-delay-200 {
+    animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+    animation-delay: 400ms;
+}
+
+.prose {
+    max-width: 65ch;
+    line-height: 1.75;
+}
+
+.prose p {
+    margin-bottom: 1.5em;
+}

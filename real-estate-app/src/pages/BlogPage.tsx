@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import authorImage1 from "../images/test1.png";
 import authorImage2 from "../images/test2.jpeg";
 import authorImage3 from "../images/test3.jpeg";
@@ -6,9 +6,25 @@ import bg from "../images/bgImage.png";
 import blogImage1 from "../images/blog1.png";
 import blogImage2 from "../images/blog2.png";
 import blogImage3 from "../images/blog3.png";
-import { FaTimes } from "react-icons/fa";
 
-const blogs = [
+import {
+    ArrowRight, X, Search, Filter, Calendar, User, Tag,
+    ChevronDown, Share2, BookOpen, TrendingUp, Heart,
+    MessageCircle, ExternalLink, Mail
+} from "lucide-react";
+
+interface Blog {
+    id: number;
+    title: string;
+    description: string;
+    content: string;
+    image: string;
+    date: string;
+    author: string;
+    authorImage: string;
+    category: string;
+}
+const blogs: Blog[] = [
     {
         id: 1,
         title: 'The Future of Real Estate Investment',
@@ -42,269 +58,397 @@ const blogs = [
         authorImage: authorImage3,
         category: 'Market Analysis',
     },
-    {
-        id: 4,
-        title: 'How to Invest in Commercial Real Estate',
-        description: 'A guide to investing in commercial real estate and maximizing your returns.',
-        content: 'Learn the key factors to consider when investing in commercial properties such as office spaces and retail buildings...',
-        image: blogImage1,
-        date: 'June 18, 2024',
-        author: 'David Brown',
-        authorImage: authorImage1,
-        category: 'Investment Tips',
-    },
-    {
-        id: 5,
-        title: 'The Rise of Smart Homes in Real Estate',
-        description: 'Discover how smart home technology is changing the way people buy and live in homes.',
-        content: 'Smart homes are becoming a major trend in real estate. Learn how they’re impacting homebuyers and investors alike...',
-        image: blogImage2,
-        date: 'May 2, 2024',
-        author: 'Sarah Green',
-        authorImage: authorImage2,
-        category: 'Real Estate Trends',
-    },
-    {
-        id: 6,
-        title: 'Real Estate Market Forecast 2025',
-        description: 'Predictions for the real estate market in 2025, including key trends to watch.',
-        content: 'Our market analysis highlights the upcoming trends in real estate, providing valuable insights for investors...',
-        image: blogImage3,
-        date: 'April 12, 2024',
-        author: 'John Doe',
-        authorImage: authorImage3,
-        category: 'Market Analysis',
-    },
-    {
-        id: 7,
-        title: 'How to Finance Your First Investment Property',
-        description: 'A beginner’s guide to financing your first real estate investment.',
-        content: 'From securing loans to evaluating mortgage options, learn the best strategies to finance your investment property...',
-        image: blogImage1,
-        date: 'March 22, 2024',
-        author: 'Jane Smith',
-        authorImage: authorImage1,
-        category: 'Investment Tips',
-    },
-    {
-        id: 8,
-        title: 'Top 10 Real Estate Markets in 2024',
-        description: 'A look at the top real estate markets to invest in this year.',
-        content: 'Explore the cities and regions that offer the best opportunities for real estate investors in 2024...',
-        image: blogImage2,
-        date: 'February 16, 2024',
-        author: 'David Brown',
-        authorImage: authorImage2,
-        category: 'Market Analysis',
-    },
-    {
-        id: 9,
-        title: 'Eco-Friendly Home Renovations',
-        description: 'Learn how to make your home eco-friendly with these renovation tips.',
-        content: 'From solar panels to energy-efficient appliances, find out how to make your home more sustainable...',
-        image: blogImage3,
-        date: 'January 30, 2024',
-        author: 'Michael Lee',
-        authorImage: authorImage3,
-        category: 'Sustainability',
-    },
-    {
-        id: 10,
-        title: 'Real Estate Investment Strategies for 2024',
-        description: 'Discover the best strategies for investing in real estate this year.',
-        content: 'Learn how to identify profitable investment properties, manage risks, and maximize returns in 2024...',
-        image: blogImage1,
-        date: 'December 20, 2023',
-        author: 'Sarah Green',
-        authorImage: authorImage1,
-        category: 'Investment Tips',
-    },
-    {
-        id: 11,
-        title: 'How to Sell Your Home in a Competitive Market',
-        description: 'Tips for selling your home quickly and for the best price in a competitive market.',
-        content: 'Learn the best strategies to stage your home, market it effectively, and close the deal in a hot real estate market...',
-        image: blogImage2,
-        date: 'November 10, 2023',
-        author: 'John Doe',
-        authorImage: authorImage2,
-        category: 'Real Estate Trends',
-    },
-    {
-        id: 12,
-        title: 'Understanding Real Estate Taxes and Deductions',
-        description: 'A guide to navigating real estate taxes and deductions for investors and homeowners.',
-        content: 'Get an overview of the most important real estate tax deductions and how they can benefit your bottom line...',
-        image: blogImage3,
-        date: 'October 5, 2023',
-        author: 'Michael Lee',
-        authorImage: authorImage3,
-        category: 'Market Analysis',
-    },
-    {
-        id: 13,
-        title: 'How to Choose the Right Property Manager',
-        description: 'Tips for finding the best property manager for your investment property.',
-        content: 'Learn the qualities to look for in a property manager to ensure your real estate investments are well-maintained...',
-        image: blogImage1,
-        date: 'September 18, 2023',
-        author: 'Jane Smith',
-        authorImage: authorImage1,
-        category: 'Company News',
-    },
-    {
-        id: 14,
-        title: 'Urban Living: The Future of Real Estate',
-        description: 'How urbanization is reshaping the real estate landscape in cities around the world.',
-        content: 'Discover the trends driving urban real estate and how investors can capitalize on the growing demand for city living...',
-        image: blogImage2,
-        date: 'August 27, 2023',
-        author: 'David Brown',
-        authorImage: authorImage2,
-        category: 'Real Estate Trends',
-    },
-    {
-        id: 15,
-        title: 'The Benefits of Multi-Family Housing Investment',
-        description: 'Why multi-family housing is a smart investment choice for 2024.',
-        content: 'Explore the advantages of investing in multi-family properties and how to maximize your ROI...',
-        image: blogImage3,
-        date: 'July 15, 2023',
-        author: 'Sarah Green',
-        authorImage: authorImage3,
-        category: 'Investment Tips',
-    },
+
 ];
 
-const categories = [
-    'All',
-    'Real Estate Trends',
-    'Market Analysis',
-    'Investment Tips',
-    'Company News',
-];
-
-const BlogPage: React.FC = () => {
+const BlogPage = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [selectedBlog, setSelectedBlog] = useState<any>(null);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isSearchFocused, setIsSearchFocused] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [animateCards, setAnimateCards] = useState(false);
+    const [likedBlogs, setLikedBlogs] = useState<number[]>([]);
+    const [email, setEmail] = useState('');
+
+    useEffect(() => {
+        setAnimateCards(true);
+    }, [selectedCategory]);
+
+    const categories = [
+        { id: 'All', icon: <BookOpen className="w-4 h-4" />, label: 'All Posts' },
+        { id: 'Real Estate Trends', icon: <TrendingUp className="w-4 h-4" />, label: 'Trends' },
+        { id: 'Market Analysis', icon: <Tag className="w-4 h-4" />, label: 'Analysis' },
+        { id: 'Investment Tips', icon: <Filter className="w-4 h-4" />, label: 'Tips' },
+        { id: 'Company News', icon: <Share2 className="w-4 h-4" />, label: 'News' },
+    ];
+
+    const filteredBlogs = blogs.filter(blog =>
+        (selectedCategory === 'All' || blog.category === selectedCategory) &&
+        (blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            blog.description.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
+
+    const handleLike = (blogId: number) => {
+        setLikedBlogs(prev =>
+            prev.includes(blogId)
+                ? prev.filter(id => id !== blogId)
+                : [...prev, blogId]
+        );
+    };
 
     const openModal = (blog: any) => {
         setSelectedBlog(blog);
+        setIsModalOpen(true);
+        document.body.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
         setSelectedBlog(null);
+        setIsModalOpen(false);
+        document.body.style.overflow = 'auto';
     };
 
-    const filteredBlogs = selectedCategory === 'All' ? blogs : blogs.filter(blog => blog.category === selectedCategory);
+    const handleSubscribe = (e: React.FormEvent) => {
+        e.preventDefault();
+        // Handle subscription logic
+        setEmail('');
+    };
 
     return (
-        <div className="py-12 px-4 md:px-6">
+        <div className="min-h-screen bg-gray-50">
             {/* Hero Section */}
-            <div
-                className="h-screen bg-cover bg-center text-white flex flex-col justify-center items-center"
-                style={{ backgroundImage: `url(${bg})` }}
-            >
-                <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Overlay */}
-                <div className="relative text-center px-4 max-w-2xl z-10">
-                    <h1 className="text-4xl md:text-5xl font-bold">Our Blog</h1>
-                    <p className="mt-4 text-xl">Stay updated with the latest trends, tips, and insights in the real estate industry.</p>
+            <div className="relative h-screen">
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                        backgroundImage: `url(${bg})`,
+                        backgroundAttachment: 'fixed'
+                    }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-transparent" />
+                <div className="relative h-full flex flex-col justify-center items-center px-4">
+                    <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in-up">
+                        Our Blog
+                    </h1>
+                    <p className="text-xl md:text-2xl text-white/90 max-w-2xl text-center mb-12 animate-fade-in-up animation-delay-200">
+                        Discover the latest insights, trends, and expert analysis in real estate
+                    </p>
+
+                    {/* Search Bar */}
+                    <div className="w-full max-w-2xl animate-fade-in-up animation-delay-400">
+                        <div className={`
+                            relative bg-white/10 backdrop-blur-md rounded-full 
+                            transition-all duration-300
+                            ${isSearchFocused ? 'bg-white shadow-lg' : ''}
+                        `}>
+                            <Search className={`
+                                absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5
+                                transition-colors duration-300
+                                ${isSearchFocused ? 'text-gray-600' : 'text-white'}
+                            `} />
+                            <input
+                                type="text"
+                                placeholder="Search articles..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                onFocus={() => setIsSearchFocused(true)}
+                                onBlur={() => setIsSearchFocused(false)}
+                                className={`
+                                    w-full bg-transparent py-4 pl-12 pr-4 rounded-full
+                                    focus:outline-none transition-colors duration-300
+                                    ${isSearchFocused
+                                        ? 'text-gray-900 placeholder-gray-500'
+                                        : 'text-white placeholder-white/70'}
+                                `}
+                            />
+                        </div>
+                    </div>
+
+                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2">
+                        <ChevronDown className="w-8 h-8 text-white animate-bounce" />
+                    </div>
                 </div>
             </div>
 
             {/* Categories Section */}
-            <div className="py-6">
-                <h2 className="text-2xl font-bold text-center mb-6">Categories</h2>
-                <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-center md:space-y-0 md:space-x-4">
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            className={`w-full md:w-auto px-2 py-1 text-sm md:px-4 md:py-2 md:text-base rounded-md ${selectedCategory === category ? 'bg-primary text-white' : 'bg-gray-200 text-gray-700'
-                                } hover:bg-primary hover:text-white transition-all`}
-                            onClick={() => setSelectedCategory(category)}
-                        >
-                            {category}
-                        </button>
-                    ))}
+            <div className="sticky top-20 z-20 py-6 bg-white shadow-md">
+                <div className="max-w-7xl mx-auto px-4">
+                    <div className="flex flex-wrap justify-center gap-4">
+                        {categories.map((category) => (
+                            <button
+                                key={category.id}
+                                onClick={() => setSelectedCategory(category.id)}
+                                className={`
+                                    flex items-center gap-2 px-6 py-3 rounded-full
+                                    transition-all duration-300 text-sm font-medium
+                                    ${selectedCategory === category.id
+                                        ? 'bg-primary text-white shadow-lg scale-105'
+                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                    }
+                                `}
+                            >
+                                {category.icon}
+                                {category.label}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            {/* Blog Post Section */}
-            <div className="py-12">
-                <h2 className="text-3xl font-bold text-center mb-8">
-                    {selectedCategory === 'All' ? 'Latest Blog Posts' : `${selectedCategory} Blog Posts`}
-                </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {filteredBlogs.map((blog) => (
-                        <div key={blog.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
-                            <img src={blog.image} alt={blog.title} className="w-full h-64 object-cover" />
-                            <div className="p-6">
-                                <div className="text-sm text-gray-500 mb-2">
-                                    <span>{blog.author}</span> | <span>{blog.date}</span>
+            {/* Blog Posts Grid */}
+            <div className="py-16 px-4">
+                <div className="max-w-7xl mx-auto">
+                    <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
+                        {selectedCategory === 'All' ? 'Latest Articles' : selectedCategory}
+                    </h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {filteredBlogs.map((blog, index) => (
+                            <article
+                                key={blog.id}
+                                className={`
+                                    group bg-white rounded-xl overflow-hidden shadow-lg
+                                    transform transition-all duration-500
+                                    hover:-translate-y-2 hover:shadow-xl
+                                    ${animateCards ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}
+                                `}
+                                style={{ animationDelay: `${index * 100}ms` }}
+                            >
+                                {/* Image Container */}
+                                <div className="relative aspect-video overflow-hidden">
+                                    <img
+                                        src={blog.image}
+                                        alt={blog.title}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 </div>
-                                <h3 className="text-xl font-semibold mb-2">{blog.title}</h3>
-                                <p className="text-gray-600 mb-4">{blog.description}</p>
-                                <button
-                                    className="bg-primary text-white py-2 px-6 rounded-md hover:bg-white hover:text-primary transition-all"
-                                    onClick={() => openModal(blog)}
-                                >
-                                    Read More
-                                </button>
-                            </div>
-                        </div>
-                    ))}
+
+                                {/* Content */}
+                                <div className="p-6">
+                                    {/* Meta Info */}
+                                    <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                                        <div className="flex items-center gap-2">
+                                            <Calendar className="w-4 h-4" />
+                                            {blog.date}
+                                        </div>
+                                        <div className="flex items-center gap-2">
+                                            <Tag className="w-4 h-4" />
+                                            {blog.category}
+                                        </div>
+                                    </div>
+
+                                    {/* Title & Description */}
+                                    <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+                                        {blog.title}
+                                    </h3>
+                                    <p className="text-gray-600 mb-4 line-clamp-3">
+                                        {blog.description}
+                                    </p>
+
+                                    {/* Author Info & Actions */}
+                                    <div className="flex items-center justify-between mt-6">
+                                        <div className="flex items-center gap-3">
+                                            <img
+                                                src={blog.authorImage}
+                                                alt={blog.author}
+                                                className="w-10 h-10 rounded-full object-cover"
+                                            />
+                                            <span className="text-sm font-medium text-gray-900">
+                                                {blog.author}
+                                            </span>
+                                        </div>
+
+                                        <div className="flex items-center gap-3">
+                                            <button
+                                                onClick={() => handleLike(blog.id)}
+                                                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                                            >
+                                                <Heart
+                                                    className={`w-5 h-5 ${likedBlogs.includes(blog.id)
+                                                        ? 'fill-red-500 text-red-500'
+                                                        : 'text-gray-500'
+                                                        }`}
+                                                />
+                                            </button>
+                                            <button
+                                                onClick={() => openModal(blog)}
+                                                className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-full
+                                                    hover:bg-primary/90 transition-colors"
+                                            >
+                                                Read More
+                                                <ArrowRight className="w-4 h-4" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            {/* Modal */}
+            {/* Blog Modal */}
             {selectedBlog && (
-                <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50 px-4">
-                    <div className="bg-white rounded-lg p-6 relative max-w-3xl w-full">
-                        <button
-                            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-                            onClick={closeModal}
-                        >
-                            <FaTimes size={24} />
-                        </button>
-                        <h2 className="text-2xl font-bold mb-4">{selectedBlog.title}</h2>
-                        <div className="flex items-center mb-4">
+                <div
+                    className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+                    onClick={closeModal}
+                >
+                    <div
+                        className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                        onClick={e => e.stopPropagation()}
+                    >
+                        {/* Modal Header */}
+                        <div className="relative h-72">
                             <img
-                                src={selectedBlog.authorImage}
-                                alt={selectedBlog.author}
-                                className="w-12 h-12 rounded-full mr-4"
+                                src={selectedBlog.image}
+                                alt={selectedBlog.title}
+                                className="w-full h-full object-cover"
                             />
-                            <div className="text-sm text-gray-500">
-                                <span>{selectedBlog.author}</span> | <span>{selectedBlog.date}</span>
+                            <button
+                                onClick={closeModal}
+                                className="absolute top-4 right-4 p-2 bg-black/50 hover:bg-black/70 
+                                    rounded-full text-white transition-colors"
+                            >
+                                <X className="w-6 h-6" />
+                            </button>
+                        </div>
+
+                        {/* Modal Content */}
+                        <div className="p-8">
+                            <div className="flex items-center gap-4 mb-6">
+                                <img
+                                    src={selectedBlog.authorImage}
+                                    alt={selectedBlog.author}
+                                    className="w-12 h-12 rounded-full object-cover"
+                                />
+                                <div>
+                                    <h4 className="font-medium text-gray-900">
+                                        {selectedBlog.author}
+                                    </h4>
+                                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                                        <Calendar className="w-4 h-4" />
+                                        {selectedBlog.date}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                                {selectedBlog.title}
+                            </h2>
+
+                            <div className="prose max-w-none">
+                                {selectedBlog.content}
+                            </div>
+
+                            {/* Modal Footer */}
+                            <div className="flex items-center justify-between mt-8 pt-8 border-t">
+                                <div className="flex items-center gap-4">
+                                    <button
+                                        onClick={() => handleLike(selectedBlog.id)}
+                                        className="flex items-center gap-2 px-4 py-2 bg-gray-100 
+                                            rounded-full hover:bg-gray-200 transition-colors"
+                                    >
+                                        <Heart
+                                            className={`w-5 h-5 ${likedBlogs.includes(selectedBlog.id)
+                                                ? 'fill-red-500 text-red-500'
+                                                : 'text-gray-500'
+                                                }`}
+                                        />
+                                        Like
+                                    </button>
+                                    <button className="flex items-center gap-2 px-4 py-2 bg-gray-100 
+                                        rounded-full hover:bg-gray-200 transition-colors">
+                                        <Share2 className="w-5 h-5" />
+                                        Share
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <img
-                            src={selectedBlog.image}
-                            alt={selectedBlog.title}
-                            className="w-full h-64 object-cover rounded-md mb-4"
-                        />
-                        <p className="text-lg">{selectedBlog.content}</p>
                     </div>
                 </div>
             )}
 
-            {/* Call to Action Section */}
-            <div
-                className="h-auto min-h-[300px] bg-cover bg-center text-white flex justify-center items-center w-full py-16 relative"
-                style={{ backgroundImage: `url(${blogImage3})` }}
-            >
-                <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-                <div className="text-center px-6 z-10">
-                    <h2 className="text-4xl md:text-5xl font-bold">Interested in Learning More?</h2>
-                    <p className="mt-4 text-lg max-w-2xl mx-auto">
-                        Subscribe to our newsletter and stay updated with the latest real estate trends, investment tips, and market insights.
+            {/* Newsletter Section */}
+            <div className="relative py-24">
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{
+                        backgroundImage: `url(${blogImage3})`,
+                        backgroundAttachment: 'fixed'
+                    }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/80 backdrop-blur-sm" />
+
+                <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                        Stay Updated
+                    </h2>
+                    <p className="text-xl mb-12">
+                        Subscribe to our newsletter for the latest real estate insights and market updates.
                     </p>
-                    <div className="mt-6">
-                        <button className="bg-primary text-white py-3 px-6 rounded-md hover:bg-white hover:text-primary transition-all">
-                            Subscribe Now
+
+                    <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
+                        <div className="relative">
+                            <input
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Enter your email address"
+                                className="w-full px-6 py-4 pr-36 rounded-full bg-white/10 backdrop-blur-sm
+                                    border border-white/20 text-white placeholder-white/70
+                                    focus:outline-none focus:bg-white/20 transition-all duration-300"
+                            />
+                            <button
+                                type="submit"
+                                className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-2
+                                    bg-white text-primary rounded-full font-medium
+                                    hover:bg-primary hover:text-white border border-white
+                                    transition-all duration-300"
+                            >
+                                Subscribe
+                                <ArrowRight className="w-4 h-4 ml-2 inline-block" />
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            {/* No Results Message */}
+            {filteredBlogs.length === 0 && (
+                <div className="text-center py-16">
+                    <div className="flex flex-col items-center justify-center space-y-4">
+                        <div className="p-4 rounded-full bg-gray-100">
+                            <Search className="w-8 h-8 text-gray-400" />
+                        </div>
+                        <h3 className="text-xl font-semibold text-gray-900">No Results Found</h3>
+                        <p className="text-gray-600">
+                            We couldn't find any posts matching your search.
+                            Try different keywords or clear your search.
+                        </p>
+                        <button
+                            onClick={() => {
+                                setSearchTerm('');
+                                setSelectedCategory('All');
+                            }}
+                            className="text-primary hover:text-primary-dark font-medium"
+                        >
+                            Clear Search
                         </button>
                     </div>
                 </div>
-            </div>
+            )}
+
+            {/* Back to Top Button */}
+            <button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="fixed bottom-8 right-8 p-3 bg-primary text-white rounded-full
+                    shadow-lg hover:bg-primary/90 transition-all duration-300
+                    opacity-0 hover:opacity-100 focus:opacity-100"
+            >
+                <ChevronDown className="w-6 h-6 rotate-180" />
+            </button>
         </div>
     );
 };
