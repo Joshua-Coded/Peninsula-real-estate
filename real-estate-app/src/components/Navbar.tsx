@@ -1,189 +1,163 @@
 import React, { useEffect, useState } from "react";
 import logo from "../images/logo.png";
-import { Link } from "react-router-dom";
+import { BookOpen, Briefcase, Building, ChevronDown, HomeIcon, Menu, Phone, Users, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
     const [scrollPosition, setScrollPosition] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isScrollingUp, setIsScrollingUp] = useState(true);
+    const [lastScroll, setLastScroll] = useState(0);
+    const location = useLocation();
+
+    const navigationItems = [
+        { path: "/", label: "Home", icon: <HomeIcon size={18} /> },
+        { path: "/about", label: "About", icon: <Users size={18} /> },
+        { path: "/projects", label: "Our Projects", icon: <Building size={18} /> },
+        { path: "/services", label: "Services", icon: <Briefcase size={18} /> },
+        { path: "/blog", label: "Blog", icon: <BookOpen size={18} /> },
+        { path: "/contact", label: "Contact Us", icon: <Phone size={18} /> }
+    ];
 
     const handleResize = () => {
-        setIsMobile(window.innerWidth < 768); // 768px is the breakpoint for mobile
+        setIsMobile(window.innerWidth < 768);
     };
 
     useEffect(() => {
         handleResize();
         window.addEventListener("resize", handleResize);
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrollPosition(window.scrollY);
+            const currentScroll = window.scrollY;
+            setIsScrollingUp(currentScroll < lastScroll);
+            setLastScroll(currentScroll);
+            setScrollPosition(currentScroll);
         };
         window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, []);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScroll]);
 
     const scrollToTop = () => {
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
+    // Close mobile menu when route changes
+    useEffect(() => {
+        setIsOpen(false);
+    }, [location]);
 
     return (
         <nav
-            className={`fixed w-full top-0 z-50 transition-all ${isMobile || scrollPosition > 100 ? "bg-primary" : "bg-transparent"
-                }`}
-            style={{ paddingTop: "10px", paddingBottom: "10px" }}
+            className={`fixed w-full z-50 transition-all duration-300
+                ${scrollPosition > 100
+                    ? 'bg-primary/95 backdrop-blur-md shadow-lg'
+                    : 'bg-transparent'}
+                ${!isScrollingUp && scrollPosition > 100 && !isOpen
+                    ? '-translate-y-full'
+                    : 'translate-y-0'}
+            `}
         >
-            <div className="w-full px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-between items-center h-20">
                     {/* Logo */}
-                    <div className="flex-shrink-0">
+                    <div className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
                         <Link to="/" onClick={scrollToTop}>
                             <img
                                 src={logo}
                                 alt="Logo"
-                                className="h-15 w-auto md:h-16 md:w-auto"
-                                style={{ width: "100%", height: "100%", marginLeft: isMobile ? "-10%" : "0" }}
+                                className="h-12 w-auto"
                             />
                         </Link>
                     </div>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden md:flex flex-grow justify-center space-x-6 text-sm">
-                        <Link to="/" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
-                            Home
-                        </Link>
-                        <Link to="/about" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
-                            About
-                        </Link>
-                        <Link to="/projects" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
-                            Our Projects
-                        </Link>
-                        <Link to="/services" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
-                            Services
-                        </Link>
-                        <Link to="/blog" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
-                            Blog
-                        </Link>
-                        <Link to="/contact" className="text-white hover:border-b-2 border-white transition-all" style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }} onClick={scrollToTop}>
-                            Contact Us
-                        </Link>
-                    </div>
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center space-x-8">
+                        {navigationItems.map((item) => (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                onClick={scrollToTop}
+                                className={`flex items-center gap-2 text-white/70 hover:text-white px-2 py-1 
+                                    transition-all duration-300 relative group
+                                    ${location.pathname === item.path ? 'text-white' : ''}
+                                `}
+                            >
+                                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    {item.icon}
+                                </span>
+                                {item.label}
+                                {/* Animated underline */}
+                                <span
+                                    className={`absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 
+                                        group-hover:w-full
+                                        ${location.pathname === item.path ? 'w-full' : ''}
+                                    `}
+                                />
+                            </Link>
+                        ))}
 
-                    {/* Explore Button */}
-                    <div className="hidden md:block">
+                        {/* Explore Button */}
                         <Link
                             to="/projects"
-                            className="bg-primary text-white py-2 px-4 rounded-md hover:bg-white hover:text-primary transition-all"
-                            onClick={() => {
-                                scrollToTop();
-                            }}
+                            onClick={scrollToTop}
+                            className="bg-white/10 text-white px-6 py-2 rounded-full hover:bg-white 
+                                hover:text-primary transition-all duration-300 backdrop-blur-sm
+                                border border-white/20 hover:border-white"
                         >
                             Explore
                         </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <div className="flex md:hidden">
-                        <button
-                            onClick={() => setIsOpen(!isOpen)}
-                            className="text-white focus:outline-none"
-                        >
-                            <svg
-                                className="w-6 h-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
-                                />
-                            </svg>
-                        </button>
-                    </div>
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="md:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
+                    >
+                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
                 </div>
 
                 {/* Mobile Menu */}
                 <div
-                    className={`fixed inset-0 bg-primary text-white flex flex-col items-start justify-start md:hidden transform transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0" : "-translate-y-full"
-                        }`}
+                    className={`md:hidden fixed inset-0 bg-primary/95 backdrop-blur-md transition-all duration-500 
+                        ${isOpen ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-full'}`}
+                    style={{ top: '80px' }}
                 >
-                    {/* Top Row with Logo and Close Button */}
-                    <div className="flex justify-between items-center w-full px-4 py-4">
-                        {/* Logo */}
-                        <div className="flex-shrink-0 text-white text-2xl font-bold">
-                            <Link to="/" onClick={scrollToTop}>
-                                <img
-                                    src={logo}
-                                    alt="Logo"
-                                    className="h-10 w-auto"
-                                    style={{ width: "100%", height: "100%", marginLeft: "10%" }}
-                                />
-                            </Link>
-                        </div>
-
-                        {/* Close Button */}
-                        <button
-                            onClick={() => setIsOpen(false)}
-                            className="text-white focus:outline-none"
-                        >
-                            <svg
-                                className="w-8 h-8"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
+                    <div className="flex flex-col p-6 space-y-6">
+                        {navigationItems.map((item) => (
+                            <Link
+                                key={item.path}
+                                to={item.path}
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    scrollToTop();
+                                }}
+                                className={`flex items-center gap-3 text-white/70 py-3 px-4 rounded-lg
+                                    transition-all duration-300 hover:bg-white/10
+                                    ${location.pathname === item.path ? 'bg-white/10 text-white' : ''}
+                                `}
                             >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </button>
-                    </div>
+                                {item.icon}
+                                {item.label}
+                            </Link>
+                        ))}
 
-                    {/* Navigation Links */}
-                    <ul className="flex flex-col space-y-8 text-sm w-full px-8 mt-10 text-normal font-normal">
-                        <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Home</Link>
-                        </li>
-                        <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/about" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>About</Link>
-                        </li>
-                        <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/projects" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Our Projects</Link>
-                        </li>
-                        <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/services" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Services</Link>
-                        </li>
-                        <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/blog" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Blog</Link>
-                        </li>
-                        <li className="border-b border-white hover:border-b-2 transition-all">
-                            <Link to="/contact" onClick={() => { setIsOpen(false); scrollToTop(); }} style={{ color: 'rgba(255, 255, 255, 0.70)', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '400' }}>Contact Us</Link>
-                        </li>
-                    </ul>
-
-                    {/* Explore Button in Mobile Menu */}
-                    <div className="mt-10 w-full flex justify-center">
+                        {/* Mobile Explore Button */}
                         <Link
                             to="/projects"
-                            className="border-4 border-white text-white py-2 px-6 rounded-md w-3/4 text-center"
-                            onClick={() => { setIsOpen(false); scrollToTop(); }}
-                            style={{ color: 'white', fontFamily: 'Open Sans', fontSize: '18px', fontWeight: '600' }}
+                            onClick={() => {
+                                setIsOpen(false);
+                                scrollToTop();
+                            }}
+                            className="flex items-center justify-center gap-2 bg-white text-primary py-4 
+                                rounded-lg font-semibold hover:bg-white/90 transition-all duration-300"
                         >
-                            Explore
+                            Explore Properties
+                            <ChevronDown className="animate-bounce" />
                         </Link>
                     </div>
                 </div>

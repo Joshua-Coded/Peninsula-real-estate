@@ -163,8 +163,8 @@ const Testimonials = () => {
                                 key={index}
                                 onClick={() => setCurrentTestimonial(index)}
                                 className={`w-2 h-2 rounded-full transition-all duration-300 ${currentTestimonial === index
-                                        ? 'w-8 bg-white'
-                                        : 'bg-white/50'
+                                    ? 'w-8 bg-white'
+                                    : 'bg-white/50'
                                     }`}
                             />
                         ))}
@@ -176,3 +176,6 @@ const Testimonials = () => {
 };
 
 export default Testimonials;
+
+
+
