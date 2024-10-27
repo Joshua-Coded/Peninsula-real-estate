@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import testimonialImage1 from "../images/test1.png";
-import testimonialImage2 from "../images/test10.jpeg";
-import testimonialImage3 from "../images/test11.jpeg";
+import testimonialImage2 from "../images/test13.webp";
+import testimonialImage3 from "../images/test12.webp";
 import { Building2, Calendar, ChevronLeft, ChevronRight, Quote, Star } from "lucide-react";
 
 const Testimonials = () => {
