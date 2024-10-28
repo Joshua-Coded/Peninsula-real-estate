@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import approachImage from "../images/approach.png";
 import backgroundImage from "../images/image2.avif";
 import ctaBackground from "../images/house1.png";
@@ -34,6 +34,8 @@ const AboutUsPage = () => {
 
         return () => observer.disconnect();
     }, []);
+
+
 
     const values = [
         {
