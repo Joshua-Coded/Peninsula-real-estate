@@ -70,3 +70,38 @@
 .investment-slider .slick-dots li.slick-active button:before {
     color: #0059B2;
 }
+
+.backdrop-blur-md {
+    backdrop-filter: blur(8px);
+}
+
+@media (max-width: 768px) {
+    .backdrop-blur-md {
+        backdrop-filter: blur(4px);
+    }
+}
+
+.text-inherit {
+    color: inherit;
+}
+
+/* Better button handling on mobile */
+@media (max-width: 640px) {
+    .inline-flex {
+        width: 100%;
+    }
+}
+
+/* Improve text contrast */
+.text-gray-700 {
+    color: #374151;
+}
+
+.text-gray-900 {
+    color: #111827;
+}
+
+/* Ensure button text stays visible on hover */
+.hover\:text-primary:hover>span {
+    color: #0059B2;
+}
